@@ -12,6 +12,7 @@ export default {
 			},
 			fontFamily: {
 				plexMono: ['"IBM Plex Mono"', "monospace"],
+				raleway: ['"Raleway"', "sans-serif"],
 			},
 		},
 	},
