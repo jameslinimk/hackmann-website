@@ -70,9 +70,15 @@
 </script>
 
 <div>
-	<span class="text-7xl tracking-wide text-blk">{hack}</span>
-	<span class="text-7xl tracking-wide font-bold">{mann}</span>
-	<span class="text-7xl tracking-wide text-black">{filler}</span>
-	<span class="text-7xl tracking-wide text-blk ml-2">{year}</span>
-	<span class="absolute bg-blk h-[0.4rem] w-11 rounded-sm mt-16" class:invisible={!visible}></span>
+	<span class="text-4xl md:text-6xl lg:text-7xl tracking-wide text-blk">{hack}</span>
+	<span class="text-4xl md:text-6xl lg:text-7xl tracking-wide font-bold">{mann}</span>
+	<span class="text-4xl md:text-6xl lg:text-7xl tracking-wide text-black">{filler}</span>
+	<span class="text-4xl md:text-6xl lg:text-7xl tracking-wide text-blk ml-2">{year}</span>
+	<span
+		class="rounded-sm absolute bg-blk
+				h-[0.24rem] w-6 mt-8
+				md:h-[0.34rem] md:w-10 md:mt-[3.2rem]
+				lg:h-[0.4rem] lg:w-11 lg:mt-16"
+		class:invisible={!visible}
+	></span>
 </div>
