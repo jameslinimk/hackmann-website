@@ -31,6 +31,7 @@
 	}
 
 	let INPUT_WIDTH = "400px"
+	const INPUT_COLOR = "#E1D9D1"
 
 	onMount(() => {
 		const check = () => {
@@ -51,7 +52,7 @@
 		register.animate(
 			[
 				{ width, color },
-				{ width: INPUT_WIDTH, color: "#9ca3af" },
+				{ width: INPUT_WIDTH, color: INPUT_COLOR },
 			],
 			{
 				duration: 750,
@@ -138,11 +139,7 @@
 		}
 
 		changeError("Added email to list")
-
-		if (!localStorage.getItem("emails")) localStorage.setItem("emails", "[]")
-		const emails = JSON.parse(localStorage.getItem("emails")!) as string[]
-		emails.push(email)
-		localStorage.setItem("emails", JSON.stringify(emails))
+		localStorage.setItem("emails", `${localStorage.getItem("emails") ?? ""}${email},`)
 	}
 </script>
 
@@ -176,7 +173,7 @@
 				on:keypress={(e) => e.key === "Enter" && submit()}
 				type="email"
 				placeholder="example@gmail.com"
-				style="width:{INPUT_WIDTH}"
+				style="width:{INPUT_WIDTH};--input-color:{INPUT_COLOR}"
 				class="text-lg md:text-2xl bg-lightMaroon text-white px-2 py-1 rounded-md focus:scale-105 focus:bg-maroon"
 			/>
 		{:else}
@@ -214,5 +211,9 @@
 
 	:global(strong) {
 		@apply text-lightMaroon;
+	}
+
+	input::placeholder {
+		color: var(--input-color);
 	}
 </style>
