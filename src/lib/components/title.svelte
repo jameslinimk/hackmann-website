@@ -1,15 +1,10 @@
 <script lang="ts">
+	import { randFill } from "$lib/glitch.js"
 	import { onMount } from "svelte"
 
 	let progress = 0
 	const word = "HackMANN".split("")
 	const YEAR = "2024"
-
-	const randFill = (length: number) => {
-		return Array(length)
-			.fill(0)
-			.reduce((acc) => acc + Math.random().toString(36)[2], "")
-	}
 
 	let hack = ""
 	let mann = ""
