@@ -12,3 +12,9 @@ pnpm install
 # Run dev server
 pnpm run dev
 ```
+
+## Todo
+
+- [ ] Favicon / SEO
+- [ ] Write out body & FAQ
+- [ ] Contact info?
