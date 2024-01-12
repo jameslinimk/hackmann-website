@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { glitch } from "$lib/glitch.js"
-	import { validate } from "email-validator"
 	import { onMount } from "svelte"
 	import { fade } from "svelte/transition"
 
@@ -104,27 +103,30 @@
 	let sending = false
 	let animating = false
 	const submit = async () => {
-		if (sending) return
-		if (!email) {
-			changeError("Please enter an email")
-			return
-		}
+		// if (sending) return
+		// if (!email) {
+		// 	changeError("Please enter an email")
+		// 	return
+		// }
 
-		if (!validate(email)) {
-			changeError("Please enter a valid email")
-			return
-		}
+		// if (!validate(email)) {
+		// 	changeError("Please enter a valid email")
+		// 	return
+		// }
 
-		if (localStorage.getItem("emails")?.includes(email)) {
-			changeError("Email already registered")
-			return
-		}
+		// if (localStorage.getItem("emails")?.includes(email)) {
+		// 	changeError("Email already registered")
+		// 	return
+		// }
 
 		animating = true
 		error = ""
 
 		const pos = emailInput.getBoundingClientRect()
 		const target = bodyParagraph.getBoundingClientRect()
+
+		const scale = emailInput.getBoundingClientRect().width / emailInput.offsetWidth
+		if (scale === 1) pos.width *= 1.05
 
 		let anim = emailInput.animate(
 			[
@@ -148,9 +150,9 @@
 
 		for (const children of extrasParent.children) {
 			if (children.tagName === "LABEL") {
-				const height = 32 // children.getBoundingClientRect().height
+				;(children as HTMLLabelElement).style.display = "inline"
+				const height = children.getBoundingClientRect().height
 				const diff = Math.abs(pos.height - height)
-				console.log(pos.height, height, diff, children, children.getBoundingClientRect())
 				children.animate(
 					[
 						{
@@ -161,7 +163,7 @@
 						{
 							position: "absolute",
 							top: `${target.top + diff / 2}px`,
-							left: `${target.right}px`,
+							left: `${target.left + pos.width}px`,
 						},
 					],
 					{
@@ -211,8 +213,8 @@
 
 <div class="flex justify-center items-center w-full h-24">
 	{#if showInput}
-		<div bind:this={extrasParent} style={animating ? "" : "display:none"}>
-			<label for="email" class="text-2xl font-bold text-black font-raleway absolute"> Email </label>
+		<div bind:this={extrasParent}>
+			<label for="email" class="text-2xl font-bold text-black font-raleway absolute hidden"> Email </label>
 		</div>
 
 		<input
