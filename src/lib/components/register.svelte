@@ -23,11 +23,23 @@
 		registerButton.addEventListener("mouseout", () => (mouseOverRegister = false))
 	}
 
-	$: if (emailInput) {
-		if (mouseOverRegister) emailInput.focus()
+	const enableAnim = () => {
 		emailInput.style.transitionProperty = "all"
 		emailInput.style.transitionTimingFunction = "cubic-bezier(0.4, 0, 0.2, 1)"
 		emailInput.style.transitionDuration = "150ms"
+	}
+
+	const disableAnim = () => {
+		emailInput.style.transitionProperty = "none"
+		emailInput.style.transitionTimingFunction = "none"
+		emailInput.style.transitionDuration = "none"
+	}
+
+	let first = false
+	$: if (emailInput && !first) {
+		first = true
+		if (mouseOverRegister) emailInput.focus()
+		enableAnim()
 	}
 
 	let INPUT_WIDTH = "400px"
@@ -124,29 +136,74 @@
 		animating = true
 		error = ""
 
+		const focused = document.activeElement === emailInput
+
+		disableAnim()
+		window.scrollTo({ top: 0 })
+
+		const children: HTMLElement[] = []
+		const childrenTarget: DOMRect[] = []
+		const inputs: HTMLInputElement[] = []
+		const newPlaceholders: string[] = []
+		let first = false
+		for (const child of extrasParent.children) {
+			if (!first) {
+				first = true
+				continue
+			}
+
+			children.push(child as HTMLElement)
+			for (const c of child.children) {
+				if (c.tagName !== "INPUT") continue
+				const ph = (c as HTMLInputElement).placeholder
+				inputs.push(c as HTMLInputElement)
+				newPlaceholders.push(ph)
+				;(c as HTMLInputElement).placeholder = email || "example@gmail.com"
+			}
+		}
+
 		const pos = emailInput.getBoundingClientRect()
 
-		const ogParent = emailInput.parentElement!.parentElement!
+		const ogParent = extrasParent
+
 		formDiv.appendChild(emailInput.parentElement!)
+		children.forEach((c) => formDiv.appendChild(c))
+
 		emailLabel.style.display = "block"
+		children.forEach((c) => {
+			for (const child of c.children) {
+				;(child as HTMLElement).style.display = "block"
+			}
+		})
 
 		const target = emailInput.getBoundingClientRect()
 		const labelTarget = emailLabel.getBoundingClientRect()
 
+		children.forEach((c) => {
+			for (const child of c.children) {
+				childrenTarget.push(child.getBoundingClientRect())
+			}
+		})
+
 		ogParent.appendChild(emailInput.parentElement!)
+		children.forEach((c) => ogParent.appendChild(c))
 
-		const scale = emailInput.getBoundingClientRect().width / emailInput.offsetWidth
-		if (scale === 1) pos.width *= 1.05
+		emailInput.style.position = "absolute"
+		emailLabel.style.position = "absolute"
+		children.forEach((c) => {
+			for (const child of c.children) {
+				;(child as HTMLElement).style.position = "absolute"
+			}
+		})
 
+		if (focused) emailInput.focus()
 		emailInput.animate(
 			[
 				{
-					position: "absolute",
 					top: `${pos.top}px`,
 					left: `${pos.left}px`,
 				},
 				{
-					position: "absolute",
 					top: `${target.top}px`,
 					left: `${target.left}px`,
 				},
@@ -158,15 +215,13 @@
 			}
 		)
 
-		emailLabel.animate(
+		const anim = emailLabel.animate(
 			[
 				{
-					position: "absolute",
 					top: `${pos.top}px`,
 					left: `${pos.left}px`,
 				},
 				{
-					position: "absolute",
 					top: `${labelTarget.top}px`,
 					left: `${labelTarget.left}px`,
 				},
@@ -177,15 +232,72 @@
 				easing: "ease",
 			}
 		)
+		anim.onfinish = () => {
+			formDiv.appendChild(emailInput.parentElement!)
+			children.forEach((c) => formDiv.appendChild(c))
+			if (focused) emailInput.focus()
 
-		const anim = parentDiv.animate([{ opacity: 1 }, { opacity: 0 }], {
+			emailInput.style.position = "static"
+			emailLabel.style.position = "static"
+			children.forEach((c) => {
+				for (const child of c.children) {
+					;(child as HTMLElement).style.position = "static"
+				}
+			})
+
+			enableAnim()
+		}
+
+		let i = 0
+		children.forEach((c) => {
+			for (const child of c.children) {
+				const target = childrenTarget[i]
+				;(child as HTMLElement).animate(
+					[
+						{
+							top: `${pos.top}px`,
+							left: `${pos.left}px`,
+						},
+						{
+							top: `${target.top}px`,
+							left: `${target.left}px`,
+						},
+					],
+					{
+						duration: 800,
+						fill: "forwards",
+						easing: "ease",
+					}
+				)
+				i++
+			}
+		})
+
+		const parentAnim = parentDiv.animate([{ opacity: 1 }, { opacity: 0 }], {
 			duration: 800,
 			fill: "forwards",
 			easing: "ease",
 		})
-		anim.onfinish = () => {
+		parentAnim.onfinish = () => {
 			parentDiv.style.display = "none"
 		}
+
+		inputs.forEach((input, i) => {
+			const ph = newPlaceholders[i]
+			glitch(
+				input.placeholder,
+				ph,
+				{
+					addSpeed: 100,
+					glitchSpeed: 50,
+					correctSpeed: 100,
+					oldToGlitchSpeed: 40,
+				},
+				(text) => {
+					input.placeholder = text
+				}
+			)
+		})
 
 		// sending = true
 
@@ -226,13 +338,24 @@
 					type="email"
 					placeholder="example@gmail.com"
 					id="email"
+					name="email"
 					style="width:{INPUT_WIDTH};--input-color:{INPUT_COLOR}"
 					class="text-lg md:text-2xl bg-lightMaroon text-white px-2 py-1 rounded-md focus:scale-105 focus:bg-maroon"
 				/>
-
-				<label for="name" class="text-lg font-bold text-black font-raleway hidden"> Name </label>
-				<input id="name" type="email" placeholder="example@gmail.com" class="text-lg md:text-2xl bg-lightMaroon text-white px-2 py-1 rounded-md focus:scale-105 focus:bg-maroon hidden" />
 			</div>
+			{#each [["name", "Name", "John Doe"], ["school", "School", "Horace Mann School"]] as [name, label, placeholder]}
+				<div>
+					<label for={name} class="text-lg font-bold text-black font-raleway hidden"> {label} </label>
+					<input
+						id={name}
+						type="text"
+						{name}
+						{placeholder}
+						style="width:{INPUT_WIDTH};--input-color:{INPUT_COLOR}"
+						class="text-lg md:text-2xl bg-lightMaroon text-white px-2 py-1 rounded-md focus:scale-105 focus:bg-maroon transition-all hidden"
+					/>
+				</div>
+			{/each}
 		</div>
 	{:else}
 		<button bind:this={registerButton} on:click={click} class="text-left text-lg md:text-2xl bg-lightMaroon text-white px-2 py-1 rounded-md hover:scale-105 hover:bg-maroon transition-all">

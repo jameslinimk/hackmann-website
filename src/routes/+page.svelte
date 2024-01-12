@@ -13,12 +13,12 @@
 	<Title />
 	<Subtitle />
 
-	<div bind:this={formDiv} class="w-full md:text-lg lg:text-lg px-10 md:px-14 lg:px-40 xl:px-96 flex justify-center items-center"></div>
+	<div bind:this={formDiv} class="w-full md:text-lg lg:text-lg px-10 md:px-14 lg:px-40 xl:px-96 justify-center gap-2 flex flex-col"></div>
 
 	<div bind:this={parentDiv} class="text-sm text-black md:text-lg lg:text-lg px-10 md:px-14 lg:px-40 xl:px-96 mt-4 lg:mt-8 font-raleway">
 		<p bind:this={bodyParagraph} class="mb-4">{@html text.body}</p>
 
-		<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4">
+		<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
 			{#each text.faq as [title, body]}
 				<div class="border-2 border-gray-400 rounded-md p-2">
 					<p class="font-bold text-lightMaroon text-lg">{title}</p>
