@@ -5,10 +5,12 @@
 
 	export let bodyParagraph: HTMLParagraphElement
 	export let parentDiv: HTMLDivElement
+	export let formDiv: HTMLDivElement
 
 	let showInput = false
 	let registerButton: HTMLButtonElement
 	let emailInput: HTMLInputElement
+	let emailLabel: HTMLLabelElement
 	let extrasParent: HTMLDivElement
 	let error = ""
 	let email = ""
@@ -123,12 +125,20 @@
 		error = ""
 
 		const pos = emailInput.getBoundingClientRect()
-		const target = bodyParagraph.getBoundingClientRect()
+
+		const ogParent = emailInput.parentElement!.parentElement!
+		formDiv.appendChild(emailInput.parentElement!)
+		emailLabel.style.display = "block"
+
+		const target = emailInput.getBoundingClientRect()
+		const labelTarget = emailLabel.getBoundingClientRect()
+
+		ogParent.appendChild(emailInput.parentElement!)
 
 		const scale = emailInput.getBoundingClientRect().width / emailInput.offsetWidth
 		if (scale === 1) pos.width *= 1.05
 
-		let anim = emailInput.animate(
+		emailInput.animate(
 			[
 				{
 					position: "absolute",
@@ -148,34 +158,27 @@
 			}
 		)
 
-		for (const children of extrasParent.children) {
-			if (children.tagName === "LABEL") {
-				;(children as HTMLLabelElement).style.display = "inline"
-				const height = children.getBoundingClientRect().height
-				const diff = Math.abs(pos.height - height)
-				children.animate(
-					[
-						{
-							position: "absolute",
-							top: `${pos.top + diff / 2}px`,
-							left: `${pos.left}px`,
-						},
-						{
-							position: "absolute",
-							top: `${target.top + diff / 2}px`,
-							left: `${target.left + pos.width}px`,
-						},
-					],
-					{
-						duration: 800,
-						fill: "forwards",
-						easing: "ease",
-					}
-				)
+		emailLabel.animate(
+			[
+				{
+					position: "absolute",
+					top: `${pos.top}px`,
+					left: `${pos.left}px`,
+				},
+				{
+					position: "absolute",
+					top: `${labelTarget.top}px`,
+					left: `${labelTarget.left}px`,
+				},
+			],
+			{
+				duration: 800,
+				fill: "forwards",
+				easing: "ease",
 			}
-		}
+		)
 
-		anim = parentDiv.animate([{ opacity: 1 }, { opacity: 0 }], {
+		const anim = parentDiv.animate([{ opacity: 1 }, { opacity: 0 }], {
 			duration: 800,
 			fill: "forwards",
 			easing: "ease",
@@ -214,19 +217,23 @@
 <div class="flex justify-center items-center w-full h-24">
 	{#if showInput}
 		<div bind:this={extrasParent}>
-			<label for="email" class="text-2xl font-bold text-black font-raleway absolute hidden"> Email </label>
-		</div>
+			<div>
+				<label bind:this={emailLabel} for="email" class="text-lg font-bold text-black font-raleway hidden"> Email </label>
+				<input
+					bind:this={emailInput}
+					bind:value={email}
+					on:keypress={(e) => e.key === "Enter" && submit()}
+					type="email"
+					placeholder="example@gmail.com"
+					id="email"
+					style="width:{INPUT_WIDTH};--input-color:{INPUT_COLOR}"
+					class="text-lg md:text-2xl bg-lightMaroon text-white px-2 py-1 rounded-md focus:scale-105 focus:bg-maroon"
+				/>
 
-		<input
-			bind:this={emailInput}
-			bind:value={email}
-			on:keypress={(e) => e.key === "Enter" && submit()}
-			type="email"
-			placeholder="example@gmail.com"
-			id="email"
-			style="width:{INPUT_WIDTH};--input-color:{INPUT_COLOR}"
-			class="text-lg md:text-2xl bg-lightMaroon text-white px-2 py-1 rounded-md focus:scale-105 focus:bg-maroon"
-		/>
+				<label for="name" class="text-lg font-bold text-black font-raleway hidden"> Name </label>
+				<input id="name" type="email" placeholder="example@gmail.com" class="text-lg md:text-2xl bg-lightMaroon text-white px-2 py-1 rounded-md focus:scale-105 focus:bg-maroon hidden" />
+			</div>
+		</div>
 	{:else}
 		<button bind:this={registerButton} on:click={click} class="text-left text-lg md:text-2xl bg-lightMaroon text-white px-2 py-1 rounded-md hover:scale-105 hover:bg-maroon transition-all">
 			Register now!
