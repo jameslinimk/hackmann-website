@@ -27,9 +27,15 @@ export const POST: RequestHandler = async ({ url }) => {
 	if (!email) return response("No email provided")
 	if (!validate(email)) return response("Invalid email address")
 
+	const name = url.searchParams.get("name")
+	if (!name) return response("No name provided")
+
+	const school = url.searchParams.get("school")
+	if (!school) return response("No school provided")
+
 	const already = await db.emails.findUnique({ where: { email } })
 	if (already) return response("Email already registered")
 
-	await db.emails.create({ data: { email } })
+	await db.emails.create({ data: { email, name, school } })
 	return response()
 }

@@ -12,5 +12,8 @@ datasource db {
 
 model Emails {
     id    Int    @id @default(autoincrement())
+	added DateTime @default(now())
     email String @unique
+	name String
+	school String
 }

@@ -3,7 +3,6 @@
 	import { onMount } from "svelte"
 	import { fade } from "svelte/transition"
 
-	export let bodyParagraph: HTMLParagraphElement
 	export let parentDiv: HTMLDivElement
 	export let formDiv: HTMLDivElement
 
@@ -44,6 +43,8 @@
 
 	let INPUT_WIDTH = "400px"
 	const INPUT_COLOR = "#E1D9D1"
+
+	$: console.log(INPUT_WIDTH)
 
 	onMount(() => {
 		const check = () => {
