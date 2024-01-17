@@ -142,26 +142,26 @@
 		disableAnim()
 		window.scrollTo({ top: 0 })
 
-		const children: HTMLElement[] = []
-		const childrenTarget: DOMRect[] = []
-		const inputs: HTMLInputElement[] = []
-		const newPlaceholders: string[] = []
-		let first = false
-		for (const child of extrasParent.children) {
-			if (!first) {
-				first = true
-				continue
-			}
-
-			children.push(child as HTMLElement)
-			for (const c of child.children) {
-				if (c.tagName !== "INPUT") continue
-				const ph = (c as HTMLInputElement).placeholder
-				inputs.push(c as HTMLInputElement)
-				newPlaceholders.push(ph)
-				;(c as HTMLInputElement).placeholder = email || "example@gmail.com"
+		const containers: HTMLDivElement[] = []
+		const placeholders: string[] = []
+		for (let i = 0; i < extrasParent.children.length; i++) {
+			const child = extrasParent.children[i];
+			containers.push(child as HTMLDivElement)
+			for (const inputElm of (child.children as any as HTMLInputElement[])) {
+				if (inputElm.tagName !== "INPUT") continue
+				placeholders.push(inputElm.placeholder)
+				inputElm.placeholder = email || "example@gmail.com"
 			}
 		}
+
+		let height = 0
+		const MARGIN = 10
+		containers.forEach((c, i) => {
+			const pos = c.getBoundingClientRect()
+			if (!height) height = pos.height
+
+			const parentCX = parentDiv.
+		})
 
 		const pos = emailInput.getBoundingClientRect()
 
@@ -341,20 +341,13 @@
 					id="email"
 					name="email"
 					style="width:{INPUT_WIDTH};--input-color:{INPUT_COLOR}"
-					class="text-lg md:text-2xl bg-lightMaroon text-white px-2 py-1 rounded-md focus:scale-105 focus:bg-maroon"
+					class="input"
 				/>
 			</div>
 			{#each [["name", "Name", "John Doe"], ["school", "School", "Horace Mann School"]] as [name, label, placeholder]}
 				<div>
 					<label for={name} class="text-lg font-bold text-black font-raleway hidden"> {label} </label>
-					<input
-						id={name}
-						type="text"
-						{name}
-						{placeholder}
-						style="width:{INPUT_WIDTH};--input-color:{INPUT_COLOR}"
-						class="text-lg md:text-2xl bg-lightMaroon text-white px-2 py-1 rounded-md focus:scale-105 focus:bg-maroon transition-all hidden"
-					/>
+					<input id={name} type="text" {name} {placeholder} style="width:{INPUT_WIDTH};--input-color:{INPUT_COLOR}" class="input transition-all hidden" />
 				</div>
 			{/each}
 		</div>
@@ -376,7 +369,11 @@
 {/if}
 
 <style>
-	input::placeholder {
+	.input::placeholder {
 		color: var(--input-color);
+	}
+
+	.input {
+		@apply text-lg md:text-2xl bg-lightMaroon text-white px-2 py-1 rounded-md focus:scale-105 focus:bg-maroon;
 	}
 </style>
