@@ -137,143 +137,87 @@
 		animating = true
 		error = ""
 
-		const focused = document.activeElement === emailInput
-
-		disableAnim()
 		window.scrollTo({ top: 0 })
+
+		// Config
+		const animation = {
+			duration: 800,
+			fill: "forwards",
+			easing: "ease",
+		} as KeyframeAnimationOptions
+
+		// Email stuff
+		const emailParentRect = emailInput.parentElement!.getBoundingClientRect()
 
 		const containers: HTMLDivElement[] = []
 		const placeholders: string[] = []
 		for (let i = 0; i < extrasParent.children.length; i++) {
-			const child = extrasParent.children[i];
+			const child = extrasParent.children[i]
 			containers.push(child as HTMLDivElement)
-			for (const inputElm of (child.children as any as HTMLInputElement[])) {
+			if (i === 0) continue
+			for (const inputElm of child.children as any as HTMLInputElement[]) {
 				if (inputElm.tagName !== "INPUT") continue
 				placeholders.push(inputElm.placeholder)
 				inputElm.placeholder = email || "example@gmail.com"
 			}
 		}
 
+		// Getting target info
+		const parentRect = parentDiv.getBoundingClientRect()
+		const parentCX = parentDiv.offsetLeft + parentRect.width / 2
+		const parentY = parentDiv.offsetTop
+
+		// Other anim
 		let height = 0
 		const MARGIN = 10
 		containers.forEach((c, i) => {
+			if (i !== 0) c.style.display = "block"
+			if (i === 0) (c.children[0] as HTMLLabelElement).style.display = "block"
+
 			const pos = c.getBoundingClientRect()
 			if (!height) height = pos.height
 
-			const parentCX = parentDiv.
-		})
+			const cx = c.offsetLeft + pos.width / 2
+			const diff = parentCX - cx
 
-		const pos = emailInput.getBoundingClientRect()
+			const tx = pos.left + diff
+			const ty = parentY + (height + MARGIN) * i
 
-		const ogParent = extrasParent
+			const [input, label] = c.children as any as [HTMLInputElement, HTMLLabelElement]
+			const ity = ty + label.getBoundingClientRect().height
 
-		formDiv.appendChild(emailInput.parentElement!)
-		children.forEach((c) => formDiv.appendChild(c))
+			input.style.position = "absolute"
+			label.style.position = "absolute"
 
-		emailLabel.style.display = "block"
-		children.forEach((c) => {
-			for (const child of c.children) {
-				;(child as HTMLElement).style.display = "block"
-			}
-		})
-
-		const target = emailInput.getBoundingClientRect()
-		const labelTarget = emailLabel.getBoundingClientRect()
-
-		children.forEach((c) => {
-			for (const child of c.children) {
-				childrenTarget.push(child.getBoundingClientRect())
-			}
-		})
-
-		ogParent.appendChild(emailInput.parentElement!)
-		children.forEach((c) => ogParent.appendChild(c))
-
-		emailInput.style.position = "absolute"
-		emailLabel.style.position = "absolute"
-		children.forEach((c) => {
-			for (const child of c.children) {
-				;(child as HTMLElement).style.position = "absolute"
-			}
-		})
-
-		if (focused) emailInput.focus()
-		emailInput.animate(
-			[
-				{
-					top: `${pos.top}px`,
-					left: `${pos.left}px`,
-				},
-				{
-					top: `${target.top}px`,
-					left: `${target.left}px`,
-				},
-			],
-			{
-				duration: 800,
-				fill: "forwards",
-				easing: "ease",
-			}
-		)
-
-		const anim = emailLabel.animate(
-			[
-				{
-					top: `${pos.top}px`,
-					left: `${pos.left}px`,
-				},
-				{
-					top: `${labelTarget.top}px`,
-					left: `${labelTarget.left}px`,
-				},
-			],
-			{
-				duration: 800,
-				fill: "forwards",
-				easing: "ease",
-			}
-		)
-		anim.onfinish = () => {
-			formDiv.appendChild(emailInput.parentElement!)
-			children.forEach((c) => formDiv.appendChild(c))
-			if (focused) emailInput.focus()
-
-			emailInput.style.position = "static"
-			emailLabel.style.position = "static"
-			children.forEach((c) => {
-				for (const child of c.children) {
-					;(child as HTMLElement).style.position = "static"
-				}
-			})
-
-			enableAnim()
-		}
-
-		let i = 0
-		children.forEach((c) => {
-			for (const child of c.children) {
-				const target = childrenTarget[i]
-				;(child as HTMLElement).animate(
-					[
-						{
-							top: `${pos.top}px`,
-							left: `${pos.left}px`,
-						},
-						{
-							top: `${target.top}px`,
-							left: `${target.left}px`,
-						},
-					],
+			input.animate(
+				[
 					{
-						duration: 800,
-						fill: "forwards",
-						easing: "ease",
-					}
-				)
-				i++
-			}
+						top: `${emailParentRect.top}px`,
+						left: `${emailParentRect.left}px`,
+					},
+					{
+						top: `${ity}px`,
+						left: `${tx}px`,
+					},
+				],
+				animation
+			)
+			label.animate(
+				[
+					{
+						top: `${emailParentRect.top}px`,
+						left: `${emailParentRect.left}px`,
+					},
+					{
+						top: `${ty}px`,
+						left: `${tx}px`,
+					},
+				],
+				animation
+			)
 		})
 
+		// Fading out parent
 		const parentAnim = parentDiv.animate([{ opacity: 1 }, { opacity: 0 }], {
 			duration: 800,
 			fill: "forwards",
@@ -283,11 +227,13 @@
 			parentDiv.style.display = "none"
 		}
 
-		inputs.forEach((input, i) => {
-			const ph = newPlaceholders[i]
+		// Glitch
+		containers.forEach((c, i) => {
+			if (i === 0) return
+			const input = c.children[1] as HTMLInputElement
 			glitch(
 				input.placeholder,
-				ph,
+				placeholders[i - 1],
 				{
 					addSpeed: 100,
 					glitchSpeed: 50,
@@ -345,9 +291,9 @@
 				/>
 			</div>
 			{#each [["name", "Name", "John Doe"], ["school", "School", "Horace Mann School"]] as [name, label, placeholder]}
-				<div>
-					<label for={name} class="text-lg font-bold text-black font-raleway hidden"> {label} </label>
-					<input id={name} type="text" {name} {placeholder} style="width:{INPUT_WIDTH};--input-color:{INPUT_COLOR}" class="input transition-all hidden" />
+				<div class="hidden">
+					<label for={name} class="text-lg font-bold text-black font-raleway block"> {label} </label>
+					<input id={name} type="text" {name} {placeholder} style="width:{INPUT_WIDTH};--input-color:{INPUT_COLOR}" class="input transition-all" />
 				</div>
 			{/each}
 		</div>
