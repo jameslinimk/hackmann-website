@@ -137,7 +137,10 @@
 		animating = true
 		error = ""
 
+		// Stuff
 		window.scrollTo({ top: 0 })
+		const focused = document.activeElement === emailInput
+		if (focused) disableAnim()
 
 		// Config
 		const animation = {
@@ -163,45 +166,34 @@
 		}
 
 		// Getting target info
-		const parentRect = parentDiv.getBoundingClientRect()
-		const parentCX = parentDiv.offsetLeft + parentRect.width / 2
-		const parentY = parentDiv.offsetTop
+		const MARGIN_TOP = 12
+		const parentRect = formDiv.getBoundingClientRect()
+		const parentCX = formDiv.offsetLeft + parentRect.width / 2
+		const parentY = formDiv.offsetTop + MARGIN_TOP
 
 		// Other anim
 		let height = 0
-		const MARGIN = 10
+		const MARGIN = 12
 		containers.forEach((c, i) => {
+			const [label, input] = c.children as any as [HTMLInputElement, HTMLLabelElement]
+
 			if (i !== 0) c.style.display = "block"
-			if (i === 0) (c.children[0] as HTMLLabelElement).style.display = "block"
+			else label.style.display = "block"
 
-			const pos = c.getBoundingClientRect()
-			if (!height) height = pos.height
+			const cRect = c.getBoundingClientRect()
+			if (!height) height = cRect.height
 
-			const cx = c.offsetLeft + pos.width / 2
+			const cx = c.offsetLeft + cRect.width / 2
 			const diff = parentCX - cx
 
-			const tx = pos.left + diff
+			const tx = cRect.left + diff
 			const ty = parentY + (height + MARGIN) * i
 
-			const [input, label] = c.children as any as [HTMLInputElement, HTMLLabelElement]
 			const ity = ty + label.getBoundingClientRect().height
 
-			input.style.position = "absolute"
 			label.style.position = "absolute"
+			input.style.position = "absolute"
 
-			input.animate(
-				[
-					{
-						top: `${emailParentRect.top}px`,
-						left: `${emailParentRect.left}px`,
-					},
-					{
-						top: `${ity}px`,
-						left: `${tx}px`,
-					},
-				],
-				animation
-			)
 			label.animate(
 				[
 					{
@@ -215,6 +207,29 @@
 				],
 				animation
 			)
+			input.animate(
+				[
+					{
+						top: `${emailParentRect.top}px`,
+						left: `${emailParentRect.left}px`,
+					},
+					{
+						top: `${ity}px`,
+						left: `${tx}px`,
+					},
+				],
+				animation
+			).onfinish = () => {
+				label.style.position = "static"
+				input.style.position = "static"
+				formDiv.appendChild(c)
+				formDiv.style.marginTop = `${MARGIN_TOP}px`
+
+				if (focused && i === 0) {
+					emailInput.focus()
+					enableAnim()
+				}
+			}
 		})
 
 		// Fading out parent
