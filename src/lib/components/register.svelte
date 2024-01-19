@@ -155,9 +155,14 @@
 		const containers: HTMLDivElement[] = []
 		const placeholders: string[] = []
 		for (let i = 0; i < extrasParent.children.length; i++) {
+			if (i === extrasParent.children.length - 1) break
+
 			const child = extrasParent.children[i]
 			containers.push(child as HTMLDivElement)
-			if (i === 0) continue
+
+			if (i === 0 || i === extrasParent.children.length - 1) continue
+
+			// Setting placeholders
 			for (const inputElm of child.children as any as HTMLInputElement[]) {
 				if (inputElm.tagName !== "INPUT") continue
 				placeholders.push(inputElm.placeholder)
@@ -311,9 +316,12 @@
 					<input id={name} type="text" {name} {placeholder} style="width:{INPUT_WIDTH};--input-color:{INPUT_COLOR}" class="input transition-all" />
 				</div>
 			{/each}
+			<div class="hidden">
+				<button class="text-left text-lg md:text-2xl bg-lightMaroon text-white px-2 py-1 rounded-md hover:scale-105 hover:bg-maroon transition-all"> Submit </button>
+			</div>
 		</div>
 	{:else}
-		<button bind:this={registerButton} on:click={click} class="text-left text-lg md:text-2xl bg-lightMaroon text-white px-2 py-1 rounded-md hover:scale-105 hover:bg-maroon transition-all">
+		<button bind:this={registerButton} on:click={click} class="text-left text-base md:text-2xl bg-lightMaroon text-white px-2 py-1 rounded-md hover:scale-105 hover:bg-maroon transition-all">
 			Register now!
 		</button>
 	{/if}
