@@ -15,30 +15,23 @@
 		]
 	],
 	"schedule": {
-		"Day 1": {
-			"9:00 AM": "Check-in",
-			"9:30 AM": "Opening Ceremony",
-			"10:00 AM": "Hacking Begins",
-			"12:00 PM": "Lunch",
-			"1:00 PM": "Workshops"
+		"Friday, April 5": {
+			"4:00 PM": "Opening Ceremonies",
+			"4:30 PM": "Team Formation/Hacking Begins",
+			"5:00 PM": "Beginner Workshops",
+			"9:00 PM": "Fun group activity--TBA!"
 		},
-		"Day 2": {
-			"9:00 AM": "Breakfast",
-			"10:00 AM": "Hacking Continues",
-			"12:00 PM": "Lunch",
-			"1:00 PM": "Workshops",
-			"3:00 PM": "Hacking Ends",
-			"3:30 PM": "Judging",
-			"4:30 PM": "Closing Ceremony"
+		"Saturday, April 6": {
+			"All Day": "Hacking Continues!",
+			"11:00 AM-3:00 PM": "Intermediate Workshops",
+			"9:00 PM": "Another fun group activity--TBA!"
 		},
-		"Day 3": {
-			"9:00 AM": "Breakfast",
-			"10:00 AM": "Hacking Continues",
-			"12:00 PM": "Lunch",
-			"1:00 PM": "Workshops",
-			"3:00 PM": "Hacking Ends",
-			"3:30 PM": "Judging",
-			"4:30 PM": "Closing Ceremony"
+		"Sunday, April 7": {
+			"All Day": "Hacking Continues!",
+			"11:00 AM-3:00 PM": "Advanced Workshops",
+			"7:00 PM": "Submission Deadline (hacking ends)",
+			"7:00 PM-8:00 PM": "Final fun group activity (TBA) while judges deliberate",
+			"8:00 PM": "Closing Ceremonies"
 		}
 	},
 	"emails": ["rain_li@horacemann.org", "spencer_lee@horacemann.org", "james_lin@horacemann.org"]

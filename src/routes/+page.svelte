@@ -56,8 +56,8 @@
 					<div class="space-y-1.5 text-base">
 						{#each Object.keys(schedule[day]) as time}
 							<div class="flex items-center">
-								<div class="font-semibold w-1/4">{time}</div>
-								<div class="w-3/4">
+								<div class="font-semibold w-1/3">{time}</div>
+								<div class="w-2/3">
 									<div>{schedule[day][time]}</div>
 								</div>
 							</div>
