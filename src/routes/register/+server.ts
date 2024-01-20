@@ -22,7 +22,7 @@ export interface RegisterResponse {
 	status: number
 }
 
-export const POST: RequestHandler = async ({ url }) => {
+export const POST: RequestHandler = async ({ url, getClientAddress }) => {
 	const email = url.searchParams.get("email")
 	if (!email) return response("No email provided")
 	if (!validate(email)) return response("Invalid email address")
@@ -36,6 +36,6 @@ export const POST: RequestHandler = async ({ url }) => {
 	const already = await db.emails.findUnique({ where: { email } })
 	if (already) return response("Email already registered")
 
-	await db.emails.create({ data: { email, name, school } })
+	await db.emails.create({ data: { email, name, school, ip: getClientAddress() } })
 	return response()
 }

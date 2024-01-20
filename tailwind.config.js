@@ -6,9 +6,12 @@ export default {
 			colors: {
 				maroon: "#670A0A",
 				lightMaroon: "#831515",
+				darkMaroon: "#400000",
 				cream: "#F8F2E5",
 				white: "#FFFFFF",
 				blk: "#333333",
+				blu: "#6568C5",
+				darkBlu: "#2A398E",
 			},
 			fontFamily: {
 				plexMono: ['"IBM Plex Mono"', "monospace"],

@@ -64,7 +64,7 @@
 	})
 </script>
 
-<div>
+<a href=".">
 	<span class="text-4xl md:text-6xl lg:text-7xl tracking-wide text-blk">{hack}</span>
 	<span class="text-4xl md:text-6xl lg:text-7xl tracking-wide font-bold">{mann}</span>
 	<span class="text-4xl md:text-6xl lg:text-7xl tracking-wide text-black">{filler}</span>
@@ -76,4 +76,4 @@
 				lg:h-[0.4rem] lg:w-11 lg:mt-16"
 		class:invisible={!visible}
 	></span>
-</div>
+</a>

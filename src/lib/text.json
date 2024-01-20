@@ -1,17 +1,45 @@
 {
-	"body": "<strong>Lorem ipsum</strong> dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sed euismod nisi porta lorem mollis aliquam ut porttitor. Vulputate odio ut enim blandit. Sed turpis tincidunt id aliquet risus. Vestibulum morbi blandit cursus risus at ultrices mi tempus. Tellus orci ac auctor augue mauris augue. Consectetur adipiscing elit duis tristique sollicitudin nibh. Tellus at urna condimentum mattis pellentesque id nibh tortor id. Scelerisque viverra mauris in aliquam sem. Aliquam ut porttitor leo a diam sollicitudin tempor.",
+	"body": "<strong>HackMann</strong> is a hackathon for middle and high school students hosted by the Horace Mann School. This year, it will be hosted ~virtually~ over the weekend of <strong>Friday, April 5 to Sunday, April 7</strong>. Teams up to 4 students are invited to participate and spend some time creating a programming project. Mentors on the HackMann discord will be available around the clock to assist students in creating applications. At the end, each team will give a short presentation of its project, and the judges will decide the winners. If you are coming with friends--great! But don't start the fun too early--hacking can only begin at the competition to make sure the playing field is level. If you're coming solo, that's great too! We will have time at the beginning of the event to form new teams.",
 	"faq": [
 		[
-			"What is this?",
-			"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sed euismod nisi porta lorem mollis aliquam ut porttitor. Vulputate odio ut enim blandit. Sed turpis tincidunt id aliquet risus. Vestibulum morbi blandit cursus risus at ultrices mi tempus. Tellus orci ac auctor augue mauris augue. Consectetur adipiscing elit"
+			"Theme",
+			"This year, we encourage projects to follow the theme of <strong>HEALTH AND ACCESSIBILITY</strong>. We hope to see projects that leverage technology to improve healthcare and well-being for all. We welcome projects of all sorts of complexity, whether that is tracking sleep schedule, using machine machine for disease early detection, or creating a platform to gather volunteers for health-related community service, the possibilities are endless. <i>If you believe you can make a better project not following this theme, you are welcomed to.</i>"
 		],
 		[
-			"What is this?",
-			"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sed euismod nisi porta lorem mollis aliquam ut porttitor. Vulputate odio ut enim blandit. Sed turpis tincidunt id aliquet risus. Vestibulum morbi blandit cursus risus at ultrices mi tempus. Tellus orci ac auctor augue mauris augue. Consectetur adipiscing elit"
+			"Prizes",
+			"The awards are given out based on creativity, usefulness, and technical prowess. There will also be a special prize given out for beginner programmers. The prizes are as followed:<ul><li>1st Place: $400 giftcard</li><li>2nd Place: $200 giftcard</li><li>3rd Place and Best Beginner Project: $50</li></ul>"
 		],
 		[
-			"What is this?",
-			"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sed euismod nisi porta lorem mollis aliquam ut porttitor. Vulputate odio ut enim blandit. Sed turpis tincidunt id aliquet risus. Vestibulum morbi blandit cursus risus at ultrices mi tempus. Tellus orci ac auctor augue mauris augue. Consectetur adipiscing elit"
+			"What if I don't know how to code?",
+			"HackMann is a hackathon that is meant for any skill level. Whether you are coming in with all of Knuth's repertoire memorized or with only a basic understanding of what programming is, this hackathon is perfect for you. There will also be plenty of workshops throughout the day on lots of topics, from a 'make you first website' class to a class on algorithmic analysis to a class on machine learning."
 		]
-	]
+	],
+	"schedule": {
+		"Day 1": {
+			"9:00 AM": "Check-in",
+			"9:30 AM": "Opening Ceremony",
+			"10:00 AM": "Hacking Begins",
+			"12:00 PM": "Lunch",
+			"1:00 PM": "Workshops"
+		},
+		"Day 2": {
+			"9:00 AM": "Breakfast",
+			"10:00 AM": "Hacking Continues",
+			"12:00 PM": "Lunch",
+			"1:00 PM": "Workshops",
+			"3:00 PM": "Hacking Ends",
+			"3:30 PM": "Judging",
+			"4:30 PM": "Closing Ceremony"
+		},
+		"Day 3": {
+			"9:00 AM": "Breakfast",
+			"10:00 AM": "Hacking Continues",
+			"12:00 PM": "Lunch",
+			"1:00 PM": "Workshops",
+			"3:00 PM": "Hacking Ends",
+			"3:30 PM": "Judging",
+			"4:30 PM": "Closing Ceremony"
+		}
+	},
+	"emails": ["rain_li@horacemann.org", "spencer_lee@horacemann.org", "james_lin@horacemann.org"]
 }

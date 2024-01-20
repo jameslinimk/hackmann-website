@@ -9,6 +9,9 @@ npm install -g pnpm
 # Install dependencies
 pnpm install
 
+# Push prisma
+pnpm prisma db push
+
 # Run dev server
 pnpm run dev
 ```
@@ -16,5 +19,4 @@ pnpm run dev
 ## Todo
 
 - [ ] Favicon / SEO
-- [ ] Write out body & FAQ
-- [ ] Contact info?
+- [ ] Use forms instead of POST requests
