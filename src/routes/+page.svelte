@@ -4,12 +4,29 @@
 	import Subtitle from "$lib/components/subtitle.svelte"
 	import Title from "$lib/components/title.svelte"
 	import text from "$lib/text.json"
+	import { MetaTags } from "svelte-meta-tags"
 
 	let parentDiv: HTMLDivElement
 	let formDiv: HTMLDivElement
 
 	const schedule = text.schedule as Record<string, Record<string, string>>
 </script>
+
+<svelte:head>
+	<meta content="#670A0A" data-react-helmet="true" name="theme-color" />
+</svelte:head>
+
+<MetaTags
+	title="Hackmann 2024"
+	description="HackMann is a virtual hackathon for middle and high school students hosted by the Horace Mann School over the weekend of Friday, April 5 to Sunday, April 7."
+	canonical="https://www.hack-mann.com/"
+	openGraph={{
+		url: "https://www.hack-mann.com/",
+		title: "Hackmann 2024",
+		description: "HackMann is a virtual hackathon for middle and high school students hosted by the Horace Mann School over the weekend of Friday, April 5 to Sunday, April 7.",
+		siteName: "Hackmann 2024",
+	}}
+/>
 
 <div class="text-maroon font-plexMono text-[0] absolute top-0 left-0 w-full flex items-center justify-center pt-4 flex-col">
 	<Title />
