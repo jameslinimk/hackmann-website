@@ -34,7 +34,7 @@
 
 	<div bind:this={formDiv} class="w-full md:text-lg lg:text-lg items-center justify-center flex flex-col gap-3"></div>
 
-	<div bind:this={parentDiv} class="text-sm text-blk md:text-lg lg:text-lg xl:text-xl px-10 md:px-14 lg:px-40 2xl:px-96 mt-4 lg:mt-8 font-raleway">
+	<div bind:this={parentDiv} class="text-base text-blk md:text-lg lg:text-lg xl:text-xl px-4 md:px-14 lg:px-40 2xl:px-96 mt-4 lg:mt-8 font-raleway">
 		<p class="mb-4 lg:mb-8">{@html text.body}</p>
 
 		<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-2 lg:mb-4">
@@ -81,17 +81,3 @@
 
 	<Register bind:parentDiv bind:formDiv />
 </div>
-
-<style>
-	:global(strong) {
-		@apply text-lightMaroon;
-	}
-
-	:global(ul) {
-		@apply mt-3;
-	}
-
-	:global(li) {
-		@apply list-disc list-inside pl-2;
-	}
-</style>

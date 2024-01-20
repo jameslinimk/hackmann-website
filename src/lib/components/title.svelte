@@ -64,14 +64,14 @@
 	})
 </script>
 
-<a href=".">
-	<span class="text-4xl md:text-6xl lg:text-7xl tracking-wide text-blk">{hack}</span>
-	<span class="text-4xl md:text-6xl lg:text-7xl tracking-wide font-bold">{mann}</span>
-	<span class="text-4xl md:text-6xl lg:text-7xl tracking-wide text-black">{filler}</span>
-	<span class="text-4xl md:text-6xl lg:text-7xl tracking-wide text-blk ml-2">{year}</span>
+<a href="." on:click={() => window.location.reload()}>
+	<span class="text-4.5xl sm:text-5xl md:text-6xl lg:text-7xl tracking-wide text-blk">{hack}</span>
+	<span class="text-4.5xl sm:text-5xl md:text-6xl lg:text-7xl tracking-wide font-bold">{mann}</span>
+	<span class="text-4.5xl sm:text-5xl md:text-6xl lg:text-7xl tracking-wide text-black">{filler}</span>
+	<span class="text-4.5xl sm:text-5xl md:text-6xl lg:text-7xl tracking-wide text-blk ml-2">{year}</span>
 	<span
 		class="rounded-sm absolute bg-blk
-				h-[0.24rem] w-6 mt-8
+				h-[0.24rem] w-7 mt-9
 				md:h-[0.34rem] md:w-10 md:mt-[3.2rem]
 				lg:h-[0.4rem] lg:w-11 lg:mt-16"
 		class:invisible={!visible}

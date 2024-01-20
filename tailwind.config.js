@@ -17,6 +17,9 @@ export default {
 				plexMono: ['"IBM Plex Mono"', "monospace"],
 				raleway: ['"Raleway"', "sans-serif"],
 			},
+			fontSize: {
+				"4.5xl": ["2.7rem", "2.5rem"],
+			},
 		},
 	},
 	plugins: [],

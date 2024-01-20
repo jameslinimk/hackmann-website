@@ -1,4 +1,5 @@
 import { db } from "$lib/db.server.js"
+import { emails } from "$lib/text.json"
 import { validate } from "email-validator"
 import type { RequestHandler } from "./$types.js"
 
@@ -25,6 +26,7 @@ export interface RegisterResponse {
 export const POST: RequestHandler = async ({ url, getClientAddress }) => {
 	const email = url.searchParams.get("email")
 	if (!email) return response("No email provided")
+	if (emails.includes(email)) return response("Nice try")
 	if (!validate(email)) return response("Invalid email address")
 
 	const name = url.searchParams.get("name")

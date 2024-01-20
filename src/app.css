@@ -4,3 +4,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+strong {
+	@apply text-lightMaroon;
+}
+
+ul {
+	@apply mt-3;
+}
+
+li {
+	@apply list-disc list-inside pl-2;
+}

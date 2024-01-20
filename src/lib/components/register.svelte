@@ -22,6 +22,12 @@
 	]
 	const inputMap: Record<string, string> = {}
 
+	const animationConf = {
+		duration: 800,
+		fill: "forwards",
+		easing: "ease",
+	} as KeyframeAnimationOptions
+
 	$: email = email.toLowerCase()
 
 	$: if (registerButton) {
@@ -172,36 +178,14 @@
 		localStorage.setItem("emails", `${localStorage.getItem("emails") ?? ""}${email},`)
 	}
 
-	let animating = false
-	const expandForm = () => {
-		if (animating || checkEmail()) return
-
-		changeError("")
-		animating = true
-		error = ""
-
-		// Stuff
-		window.scrollTo({ top: 0 })
-		const focused = document.activeElement === emailInput
-		if (focused) disableAnim()
-
-		// Config
-		const animation = {
-			duration: 800,
-			fill: "forwards",
-			easing: "ease",
-		} as KeyframeAnimationOptions
-
-		// Email stuff
-		const emailParentRect = emailInput.parentElement!.getBoundingClientRect()
-
-		const containers: HTMLDivElement[] = []
-		const placeholders: string[] = []
+	let containers: HTMLDivElement[] = []
+	let placeholders: string[] = []
+	$: if (extrasParent && !containers.length && !placeholders.length) {
 		for (let i = 0; i < extrasParent.children.length; i++) {
 			const child = extrasParent.children[i]
 			containers.push(child as HTMLDivElement)
 
-			if (i === 0 || i === extrasParent.children.length - 1) continue
+			if (i === 0 || child.children.length === 1) continue
 
 			// Setting placeholders
 			for (const inputElm of child.children as any as HTMLInputElement[]) {
@@ -210,8 +194,24 @@
 				inputElm.placeholder = email || "example@gmail.com"
 			}
 		}
+	}
+
+	let emailParentRect: DOMRect
+	let expanded = false
+	const expandForm = () => {
+		if (expanded || checkEmail()) return
+
+		changeError("")
+		expanded = true
+		error = ""
+
+		// Stuff
+		window.scrollTo({ top: 0 })
+		const focused = document.activeElement === emailInput
+		if (focused) disableAnim()
 
 		// Getting target info
+		emailParentRect = emailInput.parentElement!.getBoundingClientRect()
 		const MARGIN_TOP = 12
 		const SUBMIT_MARGIN_TOP = 12
 
@@ -254,7 +254,7 @@
 							left: `${tx}px`,
 						},
 					],
-					animation
+					animationConf
 				)
 			label.animate(
 				[
@@ -267,7 +267,7 @@
 						left: `${tx}px`,
 					},
 				],
-				animation
+				animationConf
 			).onfinish = () => {
 				label.style.position = "static"
 
@@ -285,18 +285,14 @@
 		})
 
 		// Fading out parent
-		const parentAnim = parentDiv.animate([{ opacity: 1 }, { opacity: 0 }], {
-			duration: 800,
-			fill: "forwards",
-			easing: "ease",
-		})
+		const parentAnim = parentDiv.animate([{ opacity: 1 }, { opacity: 0 }], animationConf)
 		parentAnim.onfinish = () => {
 			parentDiv.style.display = "none"
 		}
 
 		// Glitch
 		containers.forEach((c, i) => {
-			if (i === 0 || i === containers.length - 1) return
+			if (i === 0 || c.children.length === 1) return
 			const input = c.children[1] as HTMLInputElement
 			glitch(
 				input.placeholder,
@@ -311,6 +307,33 @@
 					input.placeholder = text
 				}
 			)
+		})
+	}
+
+	const collapseForm = () => {
+		if (!expanded) return
+
+		// Fading in parent
+		parentDiv.style.display = "block"
+		parentDiv.animate([{ opacity: 0 }, { opacity: 1 }], animationConf)
+
+		containers.forEach((c) => {
+			for (const child of c.children as any as HTMLInputElement[]) {
+				child.style.position = "absolute"
+				child.animate(
+					[
+						{
+							top: `${child.offsetTop}px`,
+							left: `${child.offsetLeft}px`,
+						},
+						{
+							top: `${emailParentRect.top}px`,
+							left: `${emailParentRect.left}px`,
+						},
+					],
+					animationConf
+				)
+			}
 		})
 	}
 </script>
@@ -355,7 +378,7 @@
 	{/if}
 </div>
 
-{#if email && !animating}
+{#if email && !expanded}
 	<button
 		on:click={expandForm}
 		disabled={sending}
