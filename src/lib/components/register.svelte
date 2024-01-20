@@ -331,6 +331,7 @@
 					on:keypress={(e) => e.key === "Enter" && expandForm()}
 					type="email"
 					placeholder="example@gmail.com"
+					autocomplete="email"
 					id="email"
 					name="email"
 					style="width:{INPUT_WIDTH};--input-color:{INPUT_COLOR}"
@@ -340,7 +341,7 @@
 			{#each inputs as [name, label, placeholder]}
 				<div class="hidden">
 					<label for={name} class="text-lg font-bold text-black font-raleway block"> {label} </label>
-					<input bind:value={inputMap[name]} id={name} type="text" {name} {placeholder} style="width:{INPUT_WIDTH};--input-color:{INPUT_COLOR}" class="input transition-all" />
+					<input bind:value={inputMap[name]} id={name} type="text" autocomplete={name} {name} {placeholder} style="width:{INPUT_WIDTH};--input-color:{INPUT_COLOR}" class="input transition-all" />
 				</div>
 			{/each}
 			<div class="hidden">
