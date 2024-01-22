@@ -8,6 +8,8 @@ export const POST: RequestHandler = async ({ url }) => {
 	switch (action) {
 		case "getAll":
 			return response(undefined, await db.emails.findMany())
+		case "getEmailList":
+			return response(undefined, await db.emails.findMany({ select: { email: true } }))
 		default:
 			return response("Invalid action")
 	}
