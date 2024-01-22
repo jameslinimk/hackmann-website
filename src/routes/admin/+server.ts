@@ -9,7 +9,7 @@ export const POST: RequestHandler = async ({ url }) => {
 		case "getAll":
 			return response(undefined, await db.emails.findMany())
 		case "getEmailList":
-			return response(undefined, await db.emails.findMany({ select: { email: true } }))
+			return response(undefined, (await db.emails.findMany({ select: { email: true } })).map(k => k.email).join(","))
 		default:
 			return response("Invalid action")
 	}
