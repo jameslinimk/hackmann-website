@@ -1,27 +1,8 @@
+import { response } from "$lib"
 import { db } from "$lib/db.server.js"
 import { emails } from "$lib/text.json"
 import { validate } from "email-validator"
 import type { RequestHandler } from "./$types.js"
-
-const response = (error?: string) =>
-	new Response(
-		JSON.stringify({
-			error: error,
-			success: !error,
-			status: error ? 400 : 200,
-		}),
-		{
-			headers: {
-				"content-type": "application/json",
-			},
-		}
-	)
-
-export interface RegisterResponse {
-	error?: string
-	success: boolean
-	status: number
-}
 
 export const POST: RequestHandler = async ({ url, getClientAddress }) => {
 	const email = url.searchParams.get("email")

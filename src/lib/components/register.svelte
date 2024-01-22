@@ -1,9 +1,9 @@
 <script lang="ts">
+	import type { Response } from "$lib"
 	import { glitch } from "$lib/glitch.js"
 	import { validate } from "email-validator"
 	import { onMount } from "svelte"
 	import { fade } from "svelte/transition"
-	import type { RegisterResponse } from "../../routes/register/+server.js"
 
 	export let parentDiv: HTMLDivElement
 	export let formDiv: HTMLDivElement
@@ -165,7 +165,7 @@
 			changeError("Failed to add email to list")
 		})
 		if (!res) return
-		const json = (await res.json()) as RegisterResponse
+		const json = (await res.json()) as Response
 
 		sending = false
 
