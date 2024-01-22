@@ -18,5 +18,4 @@ pnpm run dev
 
 ## Todo
 
-- [ ] Favicon / SEO
 - [ ] Use forms instead of POST requests

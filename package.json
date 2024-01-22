@@ -11,7 +11,9 @@
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
 		"serve": "node ./build/index.js",
-		"everything": "git pull && pnpm i && pnpx prisma db push && pnpm run build && pnpm run serve"
+		"everything": "git pull && pnpm i && prisma db push && pnpm run build && pnpm run serve",
+		"conf": "shx mv ./nginx.conf /etc/nginx/nginx.conf",
+		"studio": "prisma studio"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.1.1",
@@ -26,6 +28,7 @@
 		"postcss": "^8.4.33",
 		"prettier": "^3.2.4",
 		"prettier-plugin-svelte": "^3.1.2",
+		"shx": "^0.3.4",
 		"svelte": "^4.2.9",
 		"svelte-check": "^3.6.3",
 		"tailwindcss": "^3.4.1",
