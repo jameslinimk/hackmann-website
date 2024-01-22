@@ -12,8 +12,7 @@
 		"format": "prettier --write .",
 		"serve": "node ./build/index.js",
 		"everything": "git pull && pnpm i && prisma db push && pnpm run build && pnpm run serve",
-		"conf": "shx mv ./nginx.conf /etc/nginx/nginx.conf",
-		"studio": "prisma studio"
+		"conf": "shx mv ./nginx.conf /etc/nginx/nginx.conf"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.1.1",
