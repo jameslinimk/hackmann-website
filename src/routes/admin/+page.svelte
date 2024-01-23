@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { ACTIONS, type Response } from "$lib"
+	import copy from "copy-to-clipboard"
 	import { fade } from "svelte/transition"
 
 	let output = null as any
@@ -9,6 +10,8 @@
 
 		return output
 	}
+	let cls = ""
+	$: cls = classify(output)
 
 	let info = ""
 	const updateInfo = (text: string) => {
@@ -32,14 +35,15 @@
 		output = json.data
 	}
 
-	const copy = () => {
+	const copyOutput = () => {
 		if (output === null) {
 			updateInfo("Nothing to copy")
 			return
 		}
 
-		navigator.clipboard.writeText(output).then(() => {
-			updateInfo("Copied to clipboard")
+		copy(cls, {
+			format: "text/plain",
+			onCopy: () => updateInfo("Copied to clipboard"),
 		})
 	}
 
@@ -64,7 +68,7 @@
 <div class="p-5">
 	<div class="font-raleway font-bold text-xl mb-1 flex items-center gap-1">
 		<span>Output</span>
-		<button on:click={copy} class="font-normal bg-blk text-white px-1 rounded-md text-sm transition-all hover:scale-105 hover:bg-black">Copy</button>
+		<button on:click={copyOutput} class="font-normal bg-blk text-white px-1 rounded-md text-sm transition-all hover:scale-105 hover:bg-black">Copy</button>
 		<button on:click={store} class="font-normal bg-blk text-white px-1 rounded-md text-sm transition-all hover:scale-105 hover:bg-black">Store as temp</button>
 
 		{#if info}
@@ -72,6 +76,6 @@
 		{/if}
 	</div>
 	<div class="border-2 border-gray-400 rounded-md p-1 w-full font-plexMono text-sm whitespace-pre-wrap">
-		{classify(output)}
+		{cls}
 	</div>
 </div>
