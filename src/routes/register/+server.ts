@@ -4,7 +4,7 @@ import { emails } from "$lib/text.json"
 import { validate } from "email-validator"
 import type { RequestHandler } from "./$types.js"
 
-export const POST: RequestHandler = async ({ url, getClientAddress }) => {
+export const POST: RequestHandler = async ({ url, request, getClientAddress }) => {
 	const email = url.searchParams.get("email")
 	if (!email) return response("No email provided")
 	if (emails.includes(email)) return response("Nice try")
@@ -19,6 +19,8 @@ export const POST: RequestHandler = async ({ url, getClientAddress }) => {
 	const already = await db.emails.findUnique({ where: { email } })
 	if (already) return response("Email already registered")
 
-	await db.emails.create({ data: { email, name, school, ip: getClientAddress() } })
+	const ip = request.headers.get("x-forwarded-for") || getClientAddress()
+
+	await db.emails.create({ data: { email, name, school, ip } })
 	return response()
 }

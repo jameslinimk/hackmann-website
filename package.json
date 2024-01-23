@@ -16,10 +16,10 @@
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.1.1",
-		"@sveltejs/kit": "^2.4.1",
+		"@sveltejs/kit": "^2.4.3",
 		"@sveltejs/vite-plugin-svelte": "^3.0.1",
-		"@typescript-eslint/eslint-plugin": "^6.19.0",
-		"@typescript-eslint/parser": "^6.19.0",
+		"@typescript-eslint/eslint-plugin": "^6.19.1",
+		"@typescript-eslint/parser": "^6.19.1",
 		"autoprefixer": "^10.4.17",
 		"eslint": "^8.56.0",
 		"eslint-config-prettier": "^9.1.0",
@@ -38,7 +38,7 @@
 	"type": "module",
 	"dependencies": {
 		"@prisma/client": "^5.8.1",
-		"@sveltejs/adapter-node": "^4.0.0",
+		"@sveltejs/adapter-node": "^4.0.1",
 		"email-validator": "^2.0.4",
 		"prisma": "^5.8.1",
 		"svelte-meta-tags": "^3.1.0"
