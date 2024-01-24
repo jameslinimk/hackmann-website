@@ -80,4 +80,8 @@
 	</div>
 
 	<Register bind:parentDiv bind:formDiv />
+	<a class="absolute bottom-0 right-0 p-1 md:p-2 opacity-60 flex items-center gap-1" target="_blank" href="https://github.com/jameslinimk/hackmann-website">
+		<img src="/github-mark.svg" alt="Github logo" class="h-2.5 w-2.5 md:h-4 md:w-4 inline" />
+		<span class="text-2xs md:text-sm font-raleway text-blk">Made by James Lin</span>
+	</a>
 </div>

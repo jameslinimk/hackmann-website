@@ -1,4 +1,4 @@
-# Hackmann 2023 Website
+# Hackmann 2024 Website
 
 ## Development
 
