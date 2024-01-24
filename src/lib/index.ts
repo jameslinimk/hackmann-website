@@ -24,5 +24,5 @@ export const response = (error?: string, data?: unknown) =>
 		}
 	)
 
-export const ACTIONS = ["getAll", "getEmailList"] as const
+export const ACTIONS = ["getAll", "getEmailList", "getSchoolList"] as const
 export type Action = (typeof ACTIONS)[number]

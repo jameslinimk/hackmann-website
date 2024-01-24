@@ -22,6 +22,10 @@
 	]
 	const inputMap: Record<string, string> = {}
 
+	const onInputChange = (event: Event, name: string) => {
+		inputMap[name] = (event.target as HTMLInputElement).value.trim()
+	}
+
 	const animationConf = {
 		duration: 800,
 		fill: "forwards",
@@ -364,7 +368,17 @@
 			{#each inputs as [name, label, placeholder]}
 				<div class="hidden">
 					<label for={name} class="text-lg font-bold text-black font-raleway block"> {label} </label>
-					<input bind:value={inputMap[name]} id={name} type="text" autocomplete={name} {name} {placeholder} style="width:{INPUT_WIDTH};--input-color:{INPUT_COLOR}" class="input transition-all" />
+					<input
+						bind:value={inputMap[name]}
+						on:change={(e) => onInputChange(e, name)}
+						id={name}
+						type="text"
+						autocomplete={name}
+						{name}
+						{placeholder}
+						style="width:{INPUT_WIDTH};--input-color:{INPUT_COLOR}"
+						class="input transition-all"
+					/>
 				</div>
 			{/each}
 			<div class="hidden">

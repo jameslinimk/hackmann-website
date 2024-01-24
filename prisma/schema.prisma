@@ -16,5 +16,4 @@ model Emails {
     email  String   @unique
     name   String
     school String
-    ip     String
 }
