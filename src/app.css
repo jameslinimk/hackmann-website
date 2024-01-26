@@ -11,5 +11,5 @@ ul {
 }
 
 li {
-	@apply list-disc list-inside pl-2;
+	@apply list-inside pl-2 list-disc;
 }
