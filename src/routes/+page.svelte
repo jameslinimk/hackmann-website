@@ -48,8 +48,8 @@
 			<Faq title="Theme">
 				This year, we encourage projects to follow the theme of <strong>HEALTH AND ACCESSIBILITY</strong>. We hope to see projects that leverage technology to improve healthcare and well-being for
 				all. We welcome projects of all sorts of complexity, whether that is tracking sleep schedule, using machine machine for disease early detection, or creating a platform to gather volunteers for
-				health-related community service, the possibilities are endless. <i>If you believe you can make a better project not following this theme, you are welcomed to.</i></Faq
-			>
+				health-related community service, the possibilities are endless. <i>If you believe you can make a better project not following this theme, you are welcomed to.</i>
+			</Faq>
 			<Faq title="Prizes & Price">
 				The awards are given out based on creativity, usefulness, and technical prowess. Each member of a winning team will receive the prize. The prizes are as followed:
 				<div class="flex items-center ml-2 gap-2 mt-2">
@@ -58,13 +58,13 @@
 				</div>
 				<div class="flex items-center ml-2 gap-2 mb-2">
 					<img src="/first.svg" alt="First place trophy" class="w-6 h-6" />
-					Top 2 Beginner Teams: <strong class="font-semibold text-black">$75 each</strong>
+					Top 2 Beginner Teams: <strong class="font-semibold text-black">$150 each</strong>
 				</div>
 
-				<i class="text-sm"
-					>To attend, you must pay <strong class="font-semibold text-black">$5 per person</strong>. Schools can either choose to send one check or have each student send a check addressed to HM. More
-					details will be sent out soon.</i
-				>
+				<i class="text-sm">
+					To attend, you must pay <strong class="font-semibold text-black">$5 per person</strong>. Schools can either choose to send one check or have each student send a check addressed to HM. More
+					details will be sent out soon.
+				</i>
 			</Faq>
 			<Faq title="What if I don't know how to code?">
 				HackMann is a hackathon that is meant for any skill level. Whether you are coming in with all of Knuth's repertoire memorized or with only a basic understanding of what programming is, this
