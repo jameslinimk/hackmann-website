@@ -2,20 +2,20 @@
 	"schedule": {
 		"Friday, April 5": {
 			"4:00 PM": "Opening Ceremonies",
-			"4:30 PM": "Team Formation/Hacking Begins",
+			"4:30 PM": "Team Formations/coding begins",
 			"5:00 PM": "Beginner Workshops",
-			"9:00 PM": "Fun group activity--TBA!"
+			"9:00 PM": "Group activity--TBA"
 		},
 		"Saturday, April 6": {
-			"All Day": "Hacking Continues!",
+			"All Day": "Hacking continues",
 			"11:00 AM-3:00 PM": "Intermediate Workshops",
-			"9:00 PM": "Another fun group activity--TBA!"
+			"9:00 PM": "Another group activity--TBA"
 		},
 		"Sunday, April 7": {
-			"All Day": "Hacking Continues!",
+			"All Day": "Hacking continues",
 			"11:00 AM-3:00 PM": "Advanced Workshops",
-			"7:00 PM": "Submission Deadline (hacking ends)",
-			"7:00 PM-8:00 PM": "Final fun group activity (TBA) while judges deliberate",
+			"7:00 PM": "Submission Deadline",
+			"7:00 PM-8:00 PM": "Final group activity--TBA, while judges decide winners",
 			"8:00 PM": "Closing Ceremonies"
 		}
 	},

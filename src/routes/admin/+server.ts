@@ -9,9 +9,9 @@ export const POST: RequestHandler = async ({ url }) => {
 		case "getAll":
 			return response(undefined, await db.emails.findMany())
 		case "getEmailList":
-			return response(undefined, (await db.emails.findMany({ select: { email: true } })).map((k) => k.email).join(","))
+			return response(undefined, await db.emails.findMany({ distinct: ["email"] }))
 		case "getSchoolList":
-			return response(undefined, (await db.emails.findMany({ select: { school: true } })).map((k) => k.school).join(","))
+			return response(undefined, await db.emails.findMany({ distinct: ["school"] }))
 		default:
 			return response("Invalid action")
 	}
