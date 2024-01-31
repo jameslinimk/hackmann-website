@@ -34,8 +34,6 @@
 	// Reset
 	$: if ($reset) {
 		$reset = false
-		console.log("test")
-
 		hack = ""
 		mann = ""
 		filler = ""
@@ -96,7 +94,7 @@
 	})
 </script>
 
-<a href="." on:click={() => window.location.reload()}>
+<a href="." on:click={() => ($reset = true)}>
 	<span class="text-4.5xl sm:text-5xl md:text-6xl lg:text-7xl tracking-wide text-blk">{hack}</span>
 	<span class="text-4.5xl sm:text-5xl md:text-6xl lg:text-7xl tracking-wide font-bold">{mann}</span>
 	<span class="text-4.5xl sm:text-5xl md:text-6xl lg:text-7xl tracking-wide text-black">{filler}</span>

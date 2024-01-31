@@ -189,7 +189,7 @@
 			const child = extrasParent.children[i]
 			containers.push(child as HTMLDivElement)
 
-			if (i === 0 || child.children.length === 1) continue
+			if (i === 0 || i === extrasParent.children.length - 1) continue
 
 			// Setting placeholders
 			for (const inputElm of child.children as any as HTMLInputElement[]) {
@@ -218,6 +218,7 @@
 		emailParentRect = emailInput.parentElement!.getBoundingClientRect()
 		const MARGIN_TOP = 12
 		const SUBMIT_MARGIN_TOP = 12
+		const BUTTON_MARGIN = 100
 
 		const parentRect = formDiv.getBoundingClientRect()
 		const parentCX = formDiv.offsetLeft + parentRect.width / 2
@@ -228,6 +229,7 @@
 		const MARGIN = 12
 		containers.forEach((c, i) => {
 			const [label, input] = c.children as any as [HTMLInputElement, HTMLLabelElement]
+			const button = input.tagName === "BUTTON"
 
 			if (i !== 0) c.style.display = "block"
 			else label.style.display = "block"
@@ -238,15 +240,26 @@
 			const cx = c.offsetLeft + cRect.width / 2
 			const diff = parentCX - cx
 
-			const tx = cRect.left + diff
+			let tx = cRect.left + diff
+			let itx = tx
 			const ty = parentY + (height + MARGIN) * i + (!input ? SUBMIT_MARGIN_TOP : 0)
-
-			const ity = ty + label.getBoundingClientRect().height
 
 			label.style.position = "absolute"
 			if (input) input.style.position = "absolute"
 
-			if (input)
+			if (button) {
+				const labelRect = label.getBoundingClientRect()
+				input.style.width = `${labelRect.width}px`
+				console.log({ labelRect })
+
+				tx = cx - BUTTON_MARGIN / 2 - labelRect.width
+				itx = cx + BUTTON_MARGIN / 2
+
+				console.log({ tx, itx })
+			}
+
+			if (input) {
+				const ity = button ? ty : ty + label.getBoundingClientRect().height
 				input.animate(
 					[
 						{
@@ -255,11 +268,13 @@
 						},
 						{
 							top: `${ity}px`,
-							left: `${tx}px`,
+							left: `${itx}px`,
 						},
 					],
 					animationConf
 				)
+			}
+
 			label.animate(
 				[
 					{
@@ -280,6 +295,7 @@
 
 				formDiv.appendChild(c)
 				formDiv.style.marginTop = `${MARGIN_TOP}px`
+				if (button) input.style.marginLeft = `${BUTTON_MARGIN}px` // TODO margin increases after abs -> static
 
 				if (focused && i === 0) {
 					emailInput.focus()
@@ -296,7 +312,7 @@
 
 		// Glitch
 		containers.forEach((c, i) => {
-			if (i === 0 || c.children.length === 1) return
+			if (i === 0 || i === containers.length - 1) return
 			const input = c.children[1] as HTMLInputElement
 			glitch(
 				input.placeholder,
@@ -382,7 +398,8 @@
 				</div>
 			{/each}
 			<div class="hidden">
-				<button on:click={submit} class="text-left text-lg md:text-xl bg-blk text-white px-2 py-0.5 rounded-sm hover:scale-105 hover:bg-darkBlu transition-all"> Submit </button>
+				<button on:click={submit} class="text-left text-lg md:text-xl bg-darkBlu text-white px-2 py-0.5 rounded-sm hover:scale-105 hover:bg-black transition-all"> Submit </button>
+				<button on:click={collapseForm} class="text-lg md:text-xl bg-blk text-white text-center px-2 py-0.5 rounded-sm hover:scale-105 hover:bg-black transition-all"> Back </button>
 			</div>
 		</div>
 	{:else}

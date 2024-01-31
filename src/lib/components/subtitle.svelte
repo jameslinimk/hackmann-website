@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { reset } from "$lib/title.js"
 	import { onMount } from "svelte"
 
 	let text = ""
@@ -10,6 +11,14 @@
 
 	let lastGlitch = performance.now()
 	let lastChar = lastGlitch + 1000
+
+	reset.subscribe((v) => {
+		if (!v) return
+		text = ""
+		showText = "0101"
+		lastGlitch = performance.now()
+		lastChar = lastGlitch + 1000
+	})
 
 	const fillWithBits = (str: string, totalLength: number) => {
 		while (str.length < totalLength) str += Math.random() > 0.5 ? "0" : "1"
