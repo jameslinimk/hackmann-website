@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { randFill } from "$lib/glitch.js"
+	import { reset } from "$lib/title.js"
 	import { onMount } from "svelte"
 
 	let progress = 0
@@ -12,7 +13,7 @@
 	let year = ""
 	let visible = true
 
-	const v_interval = setInterval(() => {
+	let v_interval = setInterval(() => {
 		visible = !visible
 	}, 500)
 
@@ -30,7 +31,35 @@
 	let lastGlitch = lastProgress
 	let lastYear = lastProgress
 
+	// Reset
+	$: if ($reset) {
+		$reset = false
+		console.log("test")
+
+		hack = ""
+		mann = ""
+		filler = ""
+		year = ""
+		progress = 0
+		visible = true
+		yo_applied = false
+		lastProgress = performance.now()
+		lastGlitch = lastProgress
+		lastYear = lastProgress
+		if (t) {
+			clearTimeout(t)
+			t = null
+		}
+		clearInterval(v_interval)
+		v_interval = setInterval(() => {
+			visible = !visible
+		}, 500)
+	}
+
+	let t: number | null = null
 	onMount(() => {
+		;(window as any).test = () => ($reset = true)
+
 		const frame = () => {
 			const now = performance.now()
 			if (now - lastProgress > PROGRESS_SPEED[progress]) {
@@ -52,10 +81,13 @@
 				year = YEAR.slice(0, year.length + 1)
 				lastYear = now
 
-				setTimeout(() => {
-					clearInterval(v_interval)
-					visible = false
-				}, 1000)
+				if (t === null) {
+					t = setTimeout(() => {
+						clearInterval(v_interval)
+						console.log("clear interval")
+						visible = false
+					}, 1000)
+				}
 			}
 
 			requestAnimationFrame(frame)
