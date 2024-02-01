@@ -1,9 +1,8 @@
 <script lang="ts">
 	import { randFill } from "$lib/glitch.js"
-	import { reset } from "$lib/title.js"
+	import { progress, reset } from "$lib/title.js"
 	import { onMount } from "svelte"
 
-	let progress = 0
 	const word = "HackMANN".split("")
 	const YEAR = "2024"
 
@@ -17,9 +16,9 @@
 		visible = !visible
 	}, 500)
 
-	$: hack = word.slice(0, Math.min(progress, word.length / 2)).join("")
-	$: mann = word.slice(word.length / 2, progress).join("")
-	$: filler = randFill(word.length - progress)
+	$: hack = word.slice(0, Math.min($progress, word.length / 2)).join("")
+	$: mann = word.slice(word.length / 2, $progress).join("")
+	$: filler = randFill(word.length - $progress)
 
 	const PROGRESS_SPEED = [70, 105, 140, 210, 280, 315, 350, 385]
 	const GLITCH_SPEED = 50
@@ -38,7 +37,7 @@
 		mann = ""
 		filler = ""
 		year = ""
-		progress = 0
+		$progress = 0
 		visible = true
 		yo_applied = false
 		lastProgress = performance.now()
@@ -60,22 +59,22 @@
 
 		const frame = () => {
 			const now = performance.now()
-			if (now - lastProgress > PROGRESS_SPEED[progress]) {
-				progress = Math.min(progress + 1, word.length)
+			if (now - lastProgress > PROGRESS_SPEED[$progress]) {
+				$progress = Math.min($progress + 1, word.length)
 				lastProgress = now
 			}
 
 			if (now - lastGlitch > GLITCH_SPEED) {
-				filler = randFill(word.length - progress)
+				filler = randFill(word.length - $progress)
 				lastGlitch = now
 			}
 
-			if (progress === word.length && !yo_applied) {
+			if ($progress === word.length && !yo_applied) {
 				yo_applied = true
 				lastYear = now + YEAR_OFFSET
 			}
 
-			if (progress === word.length && now - lastYear > YEAR_SPEED) {
+			if ($progress === word.length && now - lastYear > YEAR_SPEED) {
 				year = YEAR.slice(0, year.length + 1)
 				lastYear = now
 
