@@ -250,12 +250,9 @@
 			if (button) {
 				const labelRect = label.getBoundingClientRect()
 				input.style.width = `${labelRect.width}px`
-				console.log({ labelRect })
 
 				tx = cx - BUTTON_MARGIN / 2 - labelRect.width
 				itx = cx + BUTTON_MARGIN / 2
-
-				console.log({ tx, itx })
 			}
 
 			if (input) {
@@ -334,10 +331,49 @@
 		if (!expanded) return
 
 		// Fading in parent
+		formDiv.style.marginTop = "0"
 		parentDiv.style.display = "block"
 		parentDiv.animate([{ opacity: 0 }, { opacity: 1 }], animationConf)
 
-		containers.forEach((c) => {
+		containers.forEach((c, i) => {
+			const [label, input] = c.children as any as [HTMLInputElement, HTMLLabelElement]
+			const button = input.tagName === "BUTTON"
+
+			input.animate(
+				[
+					{
+						top: `${input.offsetTop}px`,
+						left: `${input.offsetLeft}px`,
+					},
+					{
+						top: `${emailParentRect.top}px`,
+						left: `${emailParentRect.left}px`,
+					},
+				],
+				animationConf
+			)
+			label.animate(
+				[
+					{
+						top: `${label.offsetTop}px`,
+						left: `${label.offsetLeft}px`,
+					},
+					{
+						top: `${emailParentRect.top}px`,
+						left: `${emailParentRect.left}px`,
+					},
+				],
+				animationConf
+			).onfinish = () => {
+				if (i !== 0) c.style.display = "none"
+				else label.style.display = "none"
+
+				label.style.position = "static"
+				if (input) input.style.position = "static"
+
+				extrasParent.appendChild(c)
+			}
+
 			for (const child of c.children as any as HTMLInputElement[]) {
 				child.style.position = "absolute"
 				child.animate(
@@ -352,7 +388,14 @@
 						},
 					],
 					animationConf
-				)
+				).onfinish = () => {
+					if (i !== 0) child.style.display = "none"
+					else {
+						if (child.tagName === "LABEL") child.style.display = "none"
+						else child.style.position = "static"
+					}
+					extrasParent.appendChild(c)
+				}
 			}
 		})
 	}
