@@ -242,10 +242,10 @@
 
 			let tx = cRect.left + diff
 			let itx = tx
-			const ty = parentY + (height + MARGIN) * i + (!input ? SUBMIT_MARGIN_TOP : 0)
+			const ty = parentY + (height + MARGIN) * i + (button ? SUBMIT_MARGIN_TOP : 0)
 
 			label.style.position = "absolute"
-			if (input) input.style.position = "absolute"
+			input.style.position = "absolute"
 
 			if (button) {
 				const labelRect = label.getBoundingClientRect()
@@ -255,22 +255,20 @@
 				itx = cx + BUTTON_MARGIN / 2
 			}
 
-			if (input) {
-				const ity = button ? ty : ty + label.getBoundingClientRect().height
-				input.animate(
-					[
-						{
-							top: `${emailParentRect.top}px`,
-							left: `${emailParentRect.left}px`,
-						},
-						{
-							top: `${ity}px`,
-							left: `${itx}px`,
-						},
-					],
-					animationConf
-				)
-			}
+			const ity = button ? ty : ty + label.getBoundingClientRect().height
+			input.animate(
+				[
+					{
+						top: `${emailParentRect.top}px`,
+						left: `${emailParentRect.left}px`,
+					},
+					{
+						top: `${ity}px`,
+						left: `${itx}px`,
+					},
+				],
+				animationConf
+			)
 
 			label.animate(
 				[
@@ -286,13 +284,15 @@
 				animationConf
 			).onfinish = () => {
 				label.style.position = "static"
+				input.style.position = "static"
 
-				if (input) input.style.position = "static"
-				else label.style.marginTop = `${SUBMIT_MARGIN_TOP}px`
+				if (button) {
+					c.style.marginTop = `${SUBMIT_MARGIN_TOP}px`
+					input.style.marginLeft = `${BUTTON_MARGIN}px`
+				}
 
 				formDiv.appendChild(c)
 				formDiv.style.marginTop = `${MARGIN_TOP}px`
-				if (button) input.style.marginLeft = `${BUTTON_MARGIN}px` // TODO margin increases after abs -> static
 
 				if (focused && i === 0) {
 					emailInput.focus()
@@ -339,6 +339,25 @@
 			const [label, input] = c.children as any as [HTMLInputElement, HTMLLabelElement]
 			const button = input.tagName === "BUTTON"
 
+			if (button) {
+				c.animate(
+					[
+						{
+							opacity: 1,
+						},
+						{
+							opacity: 0,
+						},
+					],
+					animationConf
+				).onfinish = () => {
+					c.style.opacity = "1"
+				}
+			}
+
+			label.style.position = "absolute"
+			input.style.position = "absolute"
+
 			input.animate(
 				[
 					{
@@ -372,30 +391,7 @@
 				if (input) input.style.position = "static"
 
 				extrasParent.appendChild(c)
-			}
-
-			for (const child of c.children as any as HTMLInputElement[]) {
-				child.style.position = "absolute"
-				child.animate(
-					[
-						{
-							top: `${child.offsetTop}px`,
-							left: `${child.offsetLeft}px`,
-						},
-						{
-							top: `${emailParentRect.top}px`,
-							left: `${emailParentRect.left}px`,
-						},
-					],
-					animationConf
-				).onfinish = () => {
-					if (i !== 0) child.style.display = "none"
-					else {
-						if (child.tagName === "LABEL") child.style.display = "none"
-						else child.style.position = "static"
-					}
-					extrasParent.appendChild(c)
-				}
+				expanded = false
 			}
 		})
 	}
