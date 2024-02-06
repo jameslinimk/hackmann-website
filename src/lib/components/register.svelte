@@ -12,6 +12,7 @@
 	let registerButton: HTMLButtonElement
 	let emailInput: HTMLInputElement
 	let extrasParent: HTMLDivElement
+	let nextButton: HTMLButtonElement
 	let error = ""
 	let email = ""
 	let mouseOverRegister = false
@@ -201,6 +202,7 @@
 	}
 
 	let emailParentRect: DOMRect
+	let nextButtonRect: DOMRect
 	let expanded = false
 	const expandForm = () => {
 		if (expanded || checkEmail()) return
@@ -216,9 +218,9 @@
 
 		// Getting target info
 		emailParentRect = emailInput.parentElement!.getBoundingClientRect()
+		nextButtonRect = nextButton.getBoundingClientRect()
 		const MARGIN_TOP = 12
 		const SUBMIT_MARGIN_TOP = 12
-		const BUTTON_MARGIN = 100
 
 		const parentRect = formDiv.getBoundingClientRect()
 		const parentCX = formDiv.offsetLeft + parentRect.width / 2
@@ -229,7 +231,9 @@
 		const MARGIN = 12
 		containers.forEach((c, i) => {
 			const [label, input] = c.children as any as [HTMLInputElement, HTMLLabelElement]
-			const button = input.tagName === "BUTTON"
+			const button = i === containers.length - 1
+
+			const target = button ? nextButtonRect : emailParentRect
 
 			if (i !== 0) c.style.display = "block"
 			else label.style.display = "block"
@@ -251,16 +255,30 @@
 				const labelRect = label.getBoundingClientRect()
 				input.style.width = `${labelRect.width}px`
 
-				tx = cx - BUTTON_MARGIN / 2 - labelRect.width
-				itx = cx + BUTTON_MARGIN / 2
+				tx = cx - MARGIN / 2 - labelRect.width
+				itx = cx + MARGIN / 2
+			}
+
+			if (i !== 0) {
+				c.animate(
+					[
+						{
+							opacity: 0,
+						},
+						{
+							opacity: 1,
+						},
+					],
+					animationConf
+				)
 			}
 
 			const ity = button ? ty : ty + label.getBoundingClientRect().height
 			input.animate(
 				[
 					{
-						top: `${emailParentRect.top}px`,
-						left: `${emailParentRect.left}px`,
+						top: `${target.top}px`,
+						left: `${target.left}px`,
 					},
 					{
 						top: `${ity}px`,
@@ -273,8 +291,8 @@
 			label.animate(
 				[
 					{
-						top: `${emailParentRect.top}px`,
-						left: `${emailParentRect.left}px`,
+						top: `${target.top}px`,
+						left: `${target.left}px`,
 					},
 					{
 						top: `${ty}px`,
@@ -288,7 +306,6 @@
 
 				if (button) {
 					c.style.marginTop = `${SUBMIT_MARGIN_TOP}px`
-					input.style.marginLeft = `${BUTTON_MARGIN}px`
 				}
 
 				formDiv.appendChild(c)
@@ -336,10 +353,16 @@
 		parentDiv.animate([{ opacity: 0 }, { opacity: 1 }], animationConf)
 
 		containers.forEach((c, i) => {
+			extrasParent.appendChild(c)
 			const [label, input] = c.children as any as [HTMLInputElement, HTMLLabelElement]
-			const button = input.tagName === "BUTTON"
+			const button = i === containers.length - 1
 
-			if (button) {
+			const target = button ? nextButtonRect : emailParentRect
+
+			label.style.position = "absolute"
+			input.style.position = "absolute"
+
+			if (i !== 0) {
 				c.animate(
 					[
 						{
@@ -350,13 +373,8 @@
 						},
 					],
 					animationConf
-				).onfinish = () => {
-					c.style.opacity = "1"
-				}
+				)
 			}
-
-			label.style.position = "absolute"
-			input.style.position = "absolute"
 
 			input.animate(
 				[
@@ -365,8 +383,8 @@
 						left: `${input.offsetLeft}px`,
 					},
 					{
-						top: `${emailParentRect.top}px`,
-						left: `${emailParentRect.left}px`,
+						top: `${target.top}px`,
+						left: `${target.left}px`,
 					},
 				],
 				animationConf
@@ -378,8 +396,8 @@
 						left: `${label.offsetLeft}px`,
 					},
 					{
-						top: `${emailParentRect.top}px`,
-						left: `${emailParentRect.left}px`,
+						top: `${target.top}px`,
+						left: `${target.left}px`,
 					},
 				],
 				animationConf
@@ -388,9 +406,8 @@
 				else label.style.display = "none"
 
 				label.style.position = "static"
-				if (input) input.style.position = "static"
+				input.style.position = "static"
 
-				extrasParent.appendChild(c)
 				expanded = false
 			}
 		})
@@ -426,6 +443,7 @@
 					<input
 						bind:value={inputMap[name]}
 						on:change={(e) => onInputChange(e, name)}
+						on:keypress={(e) => e.key === "Enter" && submit()}
 						id={name}
 						type="text"
 						autocomplete={name}
@@ -436,7 +454,7 @@
 					/>
 				</div>
 			{/each}
-			<div class="hidden">
+			<div class="hidden opacity-0">
 				<button on:click={submit} class="text-left text-lg md:text-xl bg-darkBlu text-white px-2 py-0.5 rounded-sm hover:scale-105 hover:bg-black transition-all"> Submit </button>
 				<button on:click={collapseForm} class="text-lg md:text-xl bg-blk text-white text-center px-2 py-0.5 rounded-sm hover:scale-105 hover:bg-black transition-all"> Back </button>
 			</div>
@@ -452,8 +470,9 @@
 	<button
 		on:click={expandForm}
 		disabled={sending}
+		bind:this={nextButton}
 		transition:fade
-		class="-mt-5 md:-mt-4 text-left text-base md:text-lg bg-blk text-white px-1 rounded-sm hover:scale-105 hover:bg-darkBlu transition-all mb-10"
+		class="-mt-5 md:-mt-4 text-center text-base md:text-lg bg-blk text-white px-1 rounded-sm hover:scale-105 hover:bg-darkBlu transition-all mb-10"
 	>
 		Next
 	</button>
