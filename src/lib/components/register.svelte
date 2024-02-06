@@ -201,6 +201,10 @@
 		}
 	}
 
+	const MARGIN_TOP = 12
+	const SUBMIT_MARGIN_TOP = 12
+	const MARGIN = 12
+
 	let emailParentRect: DOMRect
 	let nextButtonRect: DOMRect
 	let expanded = false
@@ -219,8 +223,6 @@
 		// Getting target info
 		emailParentRect = emailInput.parentElement!.getBoundingClientRect()
 		nextButtonRect = nextButton.getBoundingClientRect()
-		const MARGIN_TOP = 12
-		const SUBMIT_MARGIN_TOP = 12
 
 		const parentRect = formDiv.getBoundingClientRect()
 		const parentCX = formDiv.offsetLeft + parentRect.width / 2
@@ -228,14 +230,16 @@
 
 		// Other anim
 		let height = 0
-		const MARGIN = 12
 		containers.forEach((c, i) => {
 			const [label, input] = c.children as any as [HTMLInputElement, HTMLLabelElement]
 			const button = i === containers.length - 1
 
 			const target = button ? nextButtonRect : emailParentRect
 
-			if (i !== 0) c.style.display = "block"
+			if (i !== 0) {
+				if (button) c.style.display = "flex"
+				else c.style.display = "block"
+			}
 			else label.style.display = "block"
 
 			const cRect = c.getBoundingClientRect()
@@ -454,7 +458,7 @@
 					/>
 				</div>
 			{/each}
-			<div class="hidden opacity-0">
+			<div class="hidden opacity-0 items-center justify-center" style="gap: {MARGIN}px;">
 				<button on:click={submit} class="text-left text-lg md:text-xl bg-darkBlu text-white px-2 py-0.5 rounded-sm hover:scale-105 hover:bg-black transition-all"> Submit </button>
 				<button on:click={collapseForm} class="text-lg md:text-xl bg-blk text-white text-center px-2 py-0.5 rounded-sm hover:scale-105 hover:bg-black transition-all"> Back </button>
 			</div>

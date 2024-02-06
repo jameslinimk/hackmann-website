@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { browser } from "$app/environment"
+	import { page } from "$app/stores"
 	import { randFill } from "$lib/glitch.js"
 	import { reset } from "$lib/title.js"
 	import { onMount } from "svelte"
@@ -93,10 +93,7 @@
 		requestAnimationFrame(frame)
 	})
 
-	let homepage = false
-	onMount(() => {
-		if (browser) homepage = window.location.pathname === "/"
-	})
+	let homepage = $page.url.pathname === "/"
 </script>
 
 <a href="." on:click={() => ($reset = homepage)}>
