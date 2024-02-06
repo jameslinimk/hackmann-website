@@ -58,24 +58,23 @@
 	}
 </script>
 
-<h1 class="font-raleway text-4xl font-bold text-center my-3">Actions:</h1>
-<div class="flex gap-2 justify-center items-center">
+<h1 class="font-raleway text-3xl font-bold text-center mt-3 mb-1">Actions:</h1>
+<div class="flex-col flex gap-2 justify-center items-center mb-3">
 	{#each ACTIONS as action}
-		<button class="bg-lightMaroon text-white font-raleway rounded-md px-2 py-1 text-3xl transition-all hover:scale-105 hover:bg-maroon" on:click={() => makeReq(action)}>{action}</button>
+		<button class="bg-lightMaroon text-white font-raleway rounded-md px-2 py-1 text-xl transition-all hover:scale-105 hover:bg-maroon" on:click={() => makeReq(action)}>{action}</button>
 	{/each}
 </div>
 
-<div class="p-5">
-	<div class="font-raleway font-bold text-xl mb-1 flex items-center gap-1">
-		<span>Output</span>
-		<button on:click={copyOutput} class="font-normal bg-blk text-white px-1 rounded-md text-sm transition-all hover:scale-105 hover:bg-black">Copy</button>
-		<button on:click={store} class="font-normal bg-blk text-white px-1 rounded-md text-sm transition-all hover:scale-105 hover:bg-black">Store as temp</button>
+<div class="font-raleway font-bold text-xl mb-1 flex items-center gap-1">
+	<span>Output</span>
+	<button on:click={copyOutput} class="font-normal bg-blk text-white px-1 rounded-md text-sm transition-all hover:scale-105 hover:bg-black">Copy</button>
+	<button on:click={store} class="font-normal bg-blk text-white px-1 rounded-md text-sm transition-all hover:scale-105 hover:bg-black">Store as temp</button>
 
-		{#if info}
-			<span class="text-lightMaroon font-normal" transition:fade>{info}</span>
-		{/if}
-	</div>
-	<div class="border-2 border-gray-400 rounded-md p-1 w-full font-plexMono text-sm whitespace-pre-wrap">
-		{cls}
-	</div>
+	{#if info}
+		<span class="text-lightMaroon font-normal" transition:fade>{info}</span>
+	{/if}
+</div>
+
+<div class="border-2 border-gray-400 rounded-md p-1 w-full lg:w-4/5 font-plexMono text-sm whitespace-pre-wrap">
+	{cls}
 </div>

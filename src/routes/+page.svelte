@@ -61,11 +61,10 @@
 		</Faq>
 		<Faq title="What if I don't know how to code?">
 			No problem! We'll have workshops and mentors to help you get started, and beginner teams will be judged separately from advanced teams. We encourage you to learn something new and have fun!
-			Hackathons are a great way to learn to code and learn how to design a project from start to finish.
-			<!-- If you're a beginner, we recommend you to look at our <a
+			Hackathons are a great way to learn to code and learn how to design a project from start to finish. If you're a beginner, we recommend you to look at our <a
 				href="/recourses"
 				class="underline text-blue-600 hover:text-blue-800 visited:text-purple-600">recourses page</a
-			> to get an idea of what you can learn before the Hackathon. -->
+			> to get an idea of what you can learn before the Hackathon.
 		</Faq>
 	</div>
 
