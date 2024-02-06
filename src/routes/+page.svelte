@@ -41,7 +41,7 @@
 	<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-2 lg:mb-4">
 		<Faq title="Theme">
 			This year, we've chosen to focus on the theme of <strong>health</strong>! From the COVID-19 pandemic to cancer, our health is always under constant threat. It is our responsibility as software
-			engineers and innovators to combat these issues. We welcome projects of all sorts of complexity, from tracking sleep, to using machine machine for disease early detection.
+			engineers and innovators to combat these issues. We welcome projects of all sorts of complexity, from tracking sleep, to using machine learning for early detection of disease.
 		</Faq>
 		<Faq title="Prizes & Price">
 			The awards will be given out based on creativity, usefulness, technical prowess, and concept. The prizes are as followed:
