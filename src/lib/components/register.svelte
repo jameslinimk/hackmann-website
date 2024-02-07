@@ -27,11 +27,11 @@
 		inputMap[name] = (event.target as HTMLInputElement).value.trim()
 	}
 
-	const animationConf = {
+	const animationConf: KeyframeAnimationOptions = {
 		duration: 800,
 		fill: "forwards",
 		easing: "ease",
-	} as KeyframeAnimationOptions
+	}
 
 	$: email = email.toLowerCase()
 
@@ -239,8 +239,7 @@
 			if (i !== 0) {
 				if (button) c.style.display = "flex"
 				else c.style.display = "block"
-			}
-			else label.style.display = "block"
+			} else label.style.display = "block"
 
 			const cRect = c.getBoundingClientRect()
 			if (!height) height = cRect.height

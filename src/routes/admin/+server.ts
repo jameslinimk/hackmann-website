@@ -15,20 +15,21 @@ const uniqueString = <T>(arr: T[], index: keyof T) => {
 	return str
 }
 
+const getList = (index: string) => async () => {
+	const list = await db.emails.findMany({ select: { [index]: true } })
+	return response(undefined, uniqueString(list, index))
+}
+
 export const POST: RequestHandler = async ({ url }) => {
 	const action = url.searchParams.get("action") as Action
 
 	switch (action) {
 		case "getAll":
 			return response(undefined, await db.emails.findMany())
-		case "getEmailList": {
-			const emails = await db.emails.findMany({ select: { email: true } })
-			return response(undefined, uniqueString(emails, "email"))
-		}
-		case "getSchoolList": {
-			const schools = await db.emails.findMany({ select: { school: true } })
-			return response(undefined, uniqueString(schools, "school"))
-		}
+		case "getEmailList":
+			return getList("email")()
+		case "getSchoolList":
+			return getList("school")()
 		default:
 			return response("Invalid action")
 	}

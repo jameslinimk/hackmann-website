@@ -5,7 +5,8 @@
 
 	let output = null as any
 	const classify = (output: string) => {
-		if (output === null) return ""
+		if (output === null) return "NULL"
+		if (output === "") return "EMPTY"
 		if (typeof output == "object" || typeof output == "function") return JSON.stringify(output, null, 2)
 
 		return output
@@ -43,7 +44,7 @@
 
 		copy(cls, {
 			format: "text/plain",
-			onCopy: () => updateInfo("Copied to clipboard"),
+			onCopy: () => updateInfo("Copied"),
 		})
 	}
 
@@ -54,7 +55,7 @@
 		}
 
 		;(window as any).temp = output
-		updateInfo("Stored as temp in console")
+		updateInfo("Stored as temp")
 	}
 </script>
 
@@ -71,10 +72,10 @@
 	<button on:click={store} class="font-normal bg-blk text-white px-1 rounded-md text-sm transition-all hover:scale-105 hover:bg-black">Store as temp</button>
 
 	{#if info}
-		<span class="text-lightMaroon font-normal" transition:fade>{info}</span>
+		<span class="text-lightMaroon font-normal text-lg" transition:fade>{info}</span>
 	{/if}
 </div>
 
-<div class="border-2 border-gray-400 rounded-md p-1 w-full lg:w-4/5 font-plexMono text-sm whitespace-pre-wrap">
+<div class="border-2 border-gray-400 rounded-md p-1 w-[97%] lg:w-4/5 font-plexMono text-sm whitespace-pre-wrap">
 	{cls}
 </div>

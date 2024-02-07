@@ -9,13 +9,16 @@
 	</p>
 
 	<div class="grid grid-cols-1 gap-4 mb-2 lg:mb-4">
-		<Expandable title="Web Development">
+		<Expandable title="Making Websites">
 			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
 		</Expandable>
-		<Expandable title="App Development">
+		<Expandable title="Making Apps">
 			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
 		</Expandable>
-		<Expandable title="Using API's">
+		<Expandable title="Making Games">
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+		</Expandable>
+		<Expandable title="Machine Learning">
 			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
 		</Expandable>
 	</div>
