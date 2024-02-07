@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { Response } from "$lib"
 	import { glitch } from "$lib/glitch.js"
+	import { reset } from "$lib/title.js"
 	import { validate } from "email-validator"
 	import { onMount } from "svelte"
 	import { fade } from "svelte/transition"
@@ -415,6 +416,10 @@
 			}
 		})
 	}
+
+	reset.subscribe(() => {
+		collapseForm()
+	})
 </script>
 
 {#if error}
