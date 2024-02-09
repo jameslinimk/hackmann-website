@@ -486,7 +486,7 @@
 	</button>
 {/if}
 
-<style>
+<style lang="postcss">
 	.input::placeholder {
 		color: var(--input-color);
 	}
