@@ -8,10 +8,10 @@ const uniqueString = <T>(arr: T[], index: keyof T) => {
 	arr.forEach((e) => {
 		if (!unique.has(e[index])) {
 			unique.add(e[index])
-			str += e[index] + ","
+			str += e[index] + ", "
 		}
 	})
-	if (str.endsWith(",")) str = str.slice(0, -1)
+	if (str.endsWith(", ")) str = str.slice(0, -1)
 	return str
 }
 
