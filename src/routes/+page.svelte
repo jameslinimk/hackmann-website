@@ -44,14 +44,14 @@
 			engineers and innovators to combat these issues. We welcome projects of all sorts of complexity, from tracking sleep, to using machine learning for early detection of disease.
 		</Faq>
 		<Faq title="Prizes & Price">
-			The awards will be given out based on creativity, usefulness, technical prowess, and concept. The prizes are as followed:
+			The awards will be given out based on creativity, usefulness, technical prowess, and concept. Prizes will be given out the:
 			<div class="flex items-center ml-2 gap-2 mt-2">
 				<img src="/first.svg" alt="First place trophy" class="w-5 h-5 lg:w-6 lg:h-6" />
-				Top 3 Advanced Teams: <strong class="font-semibold text-blk">$150/team</strong>
+				Top 3 Place Advanced Teams
 			</div>
 			<div class="flex items-center ml-2 gap-2 mb-2">
 				<img src="/first.svg" alt="First place trophy" class="w-5 h-5 lg:w-6 lg:h-6" />
-				Top 2 Beginner Teams: <strong class="font-semibold text-blk">$75/team</strong>
+				Top 2 Place Beginner Teams
 			</div>
 
 			<i class="text-sm">
