@@ -11,7 +11,7 @@ const uniqueString = <T>(arr: T[], index: keyof T) => {
 			str += e[index] + ", "
 		}
 	})
-	if (str.endsWith(", ")) str = str.slice(0, -1)
+	if (str.endsWith(", ")) str = str.slice(0, -2)
 	return str
 }
 
