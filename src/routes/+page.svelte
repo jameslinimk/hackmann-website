@@ -51,28 +51,26 @@
 			<div>
 				<img src="/first.svg" alt="Trophy" class="inline select-none" />
 				Advanced Division (x2 per team)
-				<div class="mb-2">
-					<div class="list-disc list-image-none ml-5 mt-1">
-						<div>
-							<img src="/circle.svg" alt="Circle" class="inline mr-1 select-none" />
-							<strong class="font-semibold text-blk">1st:</strong> iPad Air
-						</div>
-						<div>
-							<img src="/circle.svg" alt="Circle" class="inline mr-1 select-none" />
-							<strong class="font-semibold text-blk">2nd:</strong> AirPod Pro (2nd gen)
-						</div>
-						<div>
-							<img src="/circle.svg" alt="Circle" class="inline mr-1 select-none" />
-							<strong class="font-semibold text-blk">3rd:</strong> 50$ Amazon gift card
-						</div>
+				<div class="list-disc list-image-none ml-5 mt-1 mb-2">
+					<div>
+						<img src="/circle.svg" alt="-" class="inline mr-1" />
+						<strong class="font-semibold text-blk">1st:</strong> iPad Air
+					</div>
+					<div>
+						<img src="/circle.svg" alt="-" class="inline mr-1" />
+						<strong class="font-semibold text-blk">2nd:</strong> AirPod Pro (2nd gen)
+					</div>
+					<div>
+						<img src="/circle.svg" alt="-" class="inline mr-1" />
+						<strong class="font-semibold text-blk">3rd:</strong> 50$ Amazon gift card
 					</div>
 				</div>
 				<div>
-					<img src="/first.svg" alt="Trophy" class="inline" />
+					<img src="/first.svg" alt="Trophy" class="inline select-none" />
 					Beginner Division (x2 per team)
 					<div class="list-disc list-image-none ml-5 mt-1">
 						<div>
-							<img src="/circle.svg" alt="Circle" class="inline mr-1 select-none" />
+							<img src="/circle.svg" alt="-" class="inline mr-1" />
 							<strong class="font-semibold text-blk">1st:</strong> 25$ Amazon gift card
 						</div>
 					</div>
