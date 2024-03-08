@@ -48,30 +48,32 @@
 		</Faq>
 		<Faq title="Prizes & Price">
 			<p class="mb-1">The awards will be given out based on creativity, usefulness, technical prowess, and concept. The prizes given are as follows:</p>
-			<ui class="list-image-[url(/first.svg)]">
-				<li class="mb-2">
-					Advanced Division (x2 per team)
-					<ui class="list-disc list-image-none relative left-2 top-1 text-base">
-						<li class="mb-0.5">
+			<div>
+				<img src="/first.svg" alt="Trophy" class="inline" />
+				<span>Advanced Division (x2 per team)</span>
+				<div class="mb-2">
+					<div class="list-disc list-image-none relative left-8 top-1">
+						<div class="mb-0.5">
 							<span class="-left-2 relative"> <strong class="font-semibold text-blk">1st:</strong> iPad Air </span>
-						</li>
-						<li class="mb-0.5">
+						</div>
+						<div class="mb-0.5">
 							<span class="-left-2 relative"> <strong class="font-semibold text-blk">2nd:</strong> AirPod Pro (2nd gen) </span>
-						</li>
-						<li>
+						</div>
+						<div>
 							<span class="-left-2 relative"> <strong class="font-semibold text-blk">3rd:</strong> 50$ Amazon gift card </span>
-						</li>
-					</ui>
-				</li>
-				<li>
-					Beginner Division (x2 per team)
-					<ui class="list-disc list-image-none relative left-2 top-1 text-base">
-						<li class="mb-0.5">
+						</div>
+					</div>
+				</div>
+				<div>
+					<img src="/first.svg" alt="Trophy" class="inline" />
+					<span>Beginner Division (x2 per team)</span>
+					<div class="list-disc list-image-none relative left-8 top-1">
+						<div class="mb-0.5">
 							<span class="-left-2 relative"> <strong class="font-semibold text-blk">1st:</strong> 25$ Amazon gift card </span>
-						</li>
-					</ui>
-				</li>
-			</ui>
+						</div>
+					</div>
+				</div>
+			</div>
 		</Faq>
 		<Faq title="What if I don't know how to code?">
 			<p>
