@@ -1,9 +1,5 @@
 <script>
-	import { browser } from "$app/environment"
-	import { goto } from "$app/navigation"
 	import Expandable from "$lib/components/expandable.svelte"
-
-	if (browser) goto("/")
 </script>
 
 <div class="text-lg text-blk lg:text-xl px-6 md:px-14 lg:px-40 2xl:px-96 mt-4 lg:mt-8 font-raleway">
