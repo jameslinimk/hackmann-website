@@ -55,7 +55,7 @@
 		}, 500)
 	}
 
-	let t: number | null = null
+	let t: NodeJS.Timeout | null = null
 	onMount(() => {
 		;(window as any).test = () => ($reset = true)
 

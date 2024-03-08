@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { SHOW_RECOURSES } from "$lib"
 	import Divider from "$lib/components/divider.svelte"
 	import Faq from "$lib/components/faq.svelte"
 	import Register from "$lib/components/register.svelte"
@@ -50,20 +49,20 @@
 		<Faq title="Prizes & Price">
 			<p class="mb-1">The awards will be given out based on creativity, usefulness, technical prowess, and concept. The prizes given are as follows:</p>
 			<div>
-				<img src="/first.svg" alt="Trophy" class="inline" />
+				<img src="/first.svg" alt="Trophy" class="inline select-none" />
 				Advanced Division (x2 per team)
 				<div class="mb-2">
 					<div class="list-disc list-image-none ml-5 mt-1">
 						<div>
-							<img src="/circle.svg" alt="Trophy" class="inline mr-1" />
+							<img src="/circle.svg" alt="Circle" class="inline mr-1 select-none" />
 							<strong class="font-semibold text-blk">1st:</strong> iPad Air
 						</div>
 						<div>
-							<img src="/circle.svg" alt="Trophy" class="inline mr-1" />
+							<img src="/circle.svg" alt="Circle" class="inline mr-1 select-none" />
 							<strong class="font-semibold text-blk">2nd:</strong> AirPod Pro (2nd gen)
 						</div>
 						<div>
-							<img src="/circle.svg" alt="Trophy" class="inline mr-1" />
+							<img src="/circle.svg" alt="Circle" class="inline mr-1 select-none" />
 							<strong class="font-semibold text-blk">3rd:</strong> 50$ Amazon gift card
 						</div>
 					</div>
@@ -73,7 +72,7 @@
 					Beginner Division (x2 per team)
 					<div class="list-disc list-image-none ml-5 mt-1">
 						<div>
-							<img src="/circle.svg" alt="Trophy" class="inline mr-1" />
+							<img src="/circle.svg" alt="Circle" class="inline mr-1 select-none" />
 							<strong class="font-semibold text-blk">1st:</strong> 25$ Amazon gift card
 						</div>
 					</div>
@@ -84,11 +83,6 @@
 			<p>
 				No problem! We'll have workshops and mentors to help you get started, and beginner teams will be judged separately from advanced teams. We encourage you to learn something new and have fun!
 				Hackathons are a great way to learn to code and learn how to design a project from start to finish.
-
-				{#if SHOW_RECOURSES}
-					If you're a beginner, we recommend you to look at our
-					<a href="/recourses" class="a">recourses page</a> to get an idea of what you can learn before the Hackathon.
-				{/if}
 			</p>
 		</Faq>
 	</div>
