@@ -33,10 +33,11 @@
 <div bind:this={parentDiv} class="text-lg text-blk lg:text-xl px-6 md:px-14 lg:px-40 2xl:px-96 mt-4 lg:mt-8 font-raleway">
 	<p class="mb-4 lg:mb-8">
 		<strong>HackMann</strong> is a virtual hackathon hosted by Horace Mann School Programming Club. Over the course of <strong>Friday, April 5 to Sunday, April 7</strong>, teams of
-		<strong class="font-semibold text-blk">up to two</strong> in both the beginner and intermediate-advanced competitions will compete to build a working proof of concept technology that solves an issue
-		for the betterment of humanity. Mentors will be available to assist students in developing their applications, and workshops will be held throughout the weekend to help you learn new skills and get
-		started on your project. At the end, each team will give a presentation of its project, and the judges will decide the winners. If you're with your friends, great! But, if you're coming solo, we'll
-		have time at the beginning of the event to form new teams. Register below to add your email to our mailing list and receive updates about the event. We hope to see you there!
+		<strong class="font-semibold text-blk">up to two</strong> in both the beginner and intermediate-advanced competitions will compete to build a working proof of concept technology that solves an
+		issue for the betterment of humanity. Mentors will be available to assist students in developing their applications, and workshops will be held throughout the weekend to help you learn new skills
+		and get started on your project. At the end, each team will <strong class="font-semibold text-blk">give a presentation of its project</strong>, and the judges will decide the winners. If you're
+		with your friends, great! But, if you're coming solo, we'll have time at the beginning of the event to form new teams. Register below to add your email to our mailing list and join our
+		<a href="/discord" class="a">Discord server</a> to receive updates about the event. We hope to see you there!
 	</p>
 
 	<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-2 lg:mb-4">
@@ -50,26 +51,30 @@
 			<p class="mb-1">The awards will be given out based on creativity, usefulness, technical prowess, and concept. The prizes given are as follows:</p>
 			<div>
 				<img src="/first.svg" alt="Trophy" class="inline" />
-				<span>Advanced Division (x2 per team)</span>
+				Advanced Division (x2 per team)
 				<div class="mb-2">
-					<div class="list-disc list-image-none ml-7 mt-1">
-						<div class="mb-0.5">
-							<span> <strong class="font-semibold text-blk">1st:</strong> iPad Air </span>
-						</div>
-						<div class="mb-0.5">
-							<span> <strong class="font-semibold text-blk">2nd:</strong> AirPod Pro (2nd gen) </span>
+					<div class="list-disc list-image-none ml-5 mt-1">
+						<div>
+							<img src="/circle.svg" alt="Trophy" class="inline mr-1" />
+							<strong class="font-semibold text-blk">1st:</strong> iPad Air
 						</div>
 						<div>
-							<span> <strong class="font-semibold text-blk">3rd:</strong> 50$ Amazon gift card </span>
+							<img src="/circle.svg" alt="Trophy" class="inline mr-1" />
+							<strong class="font-semibold text-blk">2nd:</strong> AirPod Pro (2nd gen)
+						</div>
+						<div>
+							<img src="/circle.svg" alt="Trophy" class="inline mr-1" />
+							<strong class="font-semibold text-blk">3rd:</strong> 50$ Amazon gift card
 						</div>
 					</div>
 				</div>
 				<div>
 					<img src="/first.svg" alt="Trophy" class="inline" />
-					<span>Beginner Division (x2 per team)</span>
-					<div class="list-disc list-image-none ml-7 mt-1">
-						<div class="mb-0.5">
-							<span> <strong class="font-semibold text-blk">1st:</strong> 25$ Amazon gift card </span>
+					Beginner Division (x2 per team)
+					<div class="list-disc list-image-none ml-5 mt-1">
+						<div>
+							<img src="/circle.svg" alt="Trophy" class="inline mr-1" />
+							<strong class="font-semibold text-blk">1st:</strong> 25$ Amazon gift card
 						</div>
 					</div>
 				</div>
@@ -82,7 +87,7 @@
 
 				{#if SHOW_RECOURSES}
 					If you're a beginner, we recommend you to look at our
-					<a href="/recourses" class="underline text-blue-600 hover:text-blue-800 visited:text-purple-600">recourses page</a> to get an idea of what you can learn before the Hackathon.
+					<a href="/recourses" class="a">recourses page</a> to get an idea of what you can learn before the Hackathon.
 				{/if}
 			</p>
 		</Faq>

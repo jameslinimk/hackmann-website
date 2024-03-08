@@ -436,7 +436,7 @@
 		{#if error}
 			{error}
 		{:else}
-			Thanks for signing up!, an email will be sent out soon. Make sure to join our <a href="/discord">Discord server</a> to stay connected!
+			Thanks for signing up!, an email will be sent out soon. Make sure to join our <a href="/discord" class="a">Discord server</a> to stay connected!
 		{/if}
 	</p>
 {/if}
