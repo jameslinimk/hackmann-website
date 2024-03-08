@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { SHOW_RECOURSES } from "$lib"
 	import Divider from "$lib/components/divider.svelte"
 	import Faq from "$lib/components/faq.svelte"
 	import Register from "$lib/components/register.svelte"
@@ -40,13 +41,15 @@
 
 	<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-2 lg:mb-4">
 		<Faq title="Theme">
-			This year, we've chosen to focus on the theme of <strong>health</strong>! From the COVID-19 pandemic to cancer, our health is always under constant threat. It is our responsibility as software
-			engineers and innovators to combat these issues. We welcome projects of all sorts of complexity, from tracking sleep, to using machine learning for early detection of disease.
+			<p>
+				This year, we've chosen to focus on the theme of <strong>health</strong>! From the COVID-19 pandemic to cancer, our health is always under constant threat. It is our responsibility as software
+				engineers and innovators to combat these issues. We welcome projects of all sorts of complexity, from tracking sleep, to using machine learning for early detection of disease.
+			</p>
 		</Faq>
 		<Faq title="Prizes & Price">
-			The awards will be given out based on creativity, usefulness, technical prowess, and concept. The prizes given are as follows:
-			<ui>
-				<li class="list-image-[url(/first.svg)] relative top-1">
+			<p class="mb-1">The awards will be given out based on creativity, usefulness, technical prowess, and concept. The prizes given are as follows:</p>
+			<ui class="list-image-[url(/first.svg)]">
+				<li class="mb-2">
 					Advanced Division (x2 per team)
 					<ui class="list-disc list-image-none relative left-2 top-1 text-base">
 						<li class="mb-0.5">
@@ -60,7 +63,7 @@
 						</li>
 					</ui>
 				</li>
-				<li class="list-image-[url(/first.svg)] relative top-3">
+				<li>
 					Beginner Division (x2 per team)
 					<ui class="list-disc list-image-none relative left-2 top-1 text-base">
 						<li class="mb-0.5">
@@ -71,10 +74,15 @@
 			</ui>
 		</Faq>
 		<Faq title="What if I don't know how to code?">
-			No problem! We'll have workshops and mentors to help you get started, and beginner teams will be judged separately from advanced teams. We encourage you to learn something new and have fun!
-			Hackathons are a great way to learn to code and learn how to design a project from start to finish.
-			<!-- If you're a beginner, we recommend you to look at our
-			<a href="/recourses" class="underline text-blue-600 hover:text-blue-800 visited:text-purple-600">recourses page</a> to get an idea of what you can learn before the Hackathon. -->
+			<p>
+				No problem! We'll have workshops and mentors to help you get started, and beginner teams will be judged separately from advanced teams. We encourage you to learn something new and have fun!
+				Hackathons are a great way to learn to code and learn how to design a project from start to finish.
+
+				{#if SHOW_RECOURSES}
+					If you're a beginner, we recommend you to look at our
+					<a href="/recourses" class="underline text-blue-600 hover:text-blue-800 visited:text-purple-600">recourses page</a> to get an idea of what you can learn before the Hackathon.
+				{/if}
+			</p>
 		</Faq>
 	</div>
 
