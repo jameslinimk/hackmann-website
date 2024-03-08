@@ -13,8 +13,10 @@
 	let registerButton: HTMLButtonElement
 	let emailInput: HTMLInputElement
 	let extrasParent: HTMLDivElement
+	let fullParent: HTMLDivElement
 	let nextButton: HTMLButtonElement
 	let error = ""
+	let showThanks = false
 	let email = ""
 	let mouseOverRegister = false
 
@@ -112,6 +114,7 @@
 	}
 
 	const changeError = (n: string, addSpeed = 200) => {
+		showThanks = false
 		if (!error || error === n) {
 			error = n
 			return
@@ -180,7 +183,8 @@
 			return
 		}
 
-		changeError("Added email to list, an email will be sent to you soon!", 50)
+		changeError("")
+		showThanks = true
 		localStorage.setItem("emails", `${localStorage.getItem("emails") ?? ""}${email},`)
 	}
 
@@ -220,6 +224,7 @@
 		window.scrollTo({ top: 0 })
 		const focused = document.activeElement === emailInput
 		if (focused) disableAnim()
+		fullParent.style.pointerEvents = "none"
 
 		// Getting target info
 		emailParentRect = emailInput.parentElement!.getBoundingClientRect()
@@ -351,6 +356,9 @@
 	const collapseForm = () => {
 		if (!expanded) return
 
+		// Stuff
+		fullParent.style.pointerEvents = "auto"
+
 		// Fading in parent
 		formDiv.style.marginTop = "0"
 		parentDiv.style.display = "block"
@@ -422,12 +430,18 @@
 	})
 </script>
 
-{#if error}
-	<div class="h-1"></div>
-	<p class="text-xs -mb-7 md:text-sm md:-mb-6 transition-all" transition:fade>{error}</p>
+{#if error || showThanks}
+	<div class="h-1" />
+	<p class="text-xs -mb-7 md:text-sm md:-mb-6 transition-all text-center" transition:fade>
+		{#if error}
+			{error}
+		{:else}
+			Thanks for signing up!, an email will be sent out soon. Make sure to join our <a href="/discord">Discord server</a> to stay connected!
+		{/if}
+	</p>
 {/if}
 
-<div class="flex justify-center items-center w-full h-24">
+<div bind:this={fullParent} class="flex justify-center items-center w-full h-24">
 	{#if showInput}
 		<div bind:this={extrasParent}>
 			<div>

@@ -52,24 +52,24 @@
 				<img src="/first.svg" alt="Trophy" class="inline" />
 				<span>Advanced Division (x2 per team)</span>
 				<div class="mb-2">
-					<div class="list-disc list-image-none relative left-8 top-1">
+					<div class="list-disc list-image-none ml-7 mt-1">
 						<div class="mb-0.5">
-							<span class="-left-2 relative"> <strong class="font-semibold text-blk">1st:</strong> iPad Air </span>
+							<span> <strong class="font-semibold text-blk">1st:</strong> iPad Air </span>
 						</div>
 						<div class="mb-0.5">
-							<span class="-left-2 relative"> <strong class="font-semibold text-blk">2nd:</strong> AirPod Pro (2nd gen) </span>
+							<span> <strong class="font-semibold text-blk">2nd:</strong> AirPod Pro (2nd gen) </span>
 						</div>
 						<div>
-							<span class="-left-2 relative"> <strong class="font-semibold text-blk">3rd:</strong> 50$ Amazon gift card </span>
+							<span> <strong class="font-semibold text-blk">3rd:</strong> 50$ Amazon gift card </span>
 						</div>
 					</div>
 				</div>
 				<div>
 					<img src="/first.svg" alt="Trophy" class="inline" />
 					<span>Beginner Division (x2 per team)</span>
-					<div class="list-disc list-image-none relative left-8 top-1">
+					<div class="list-disc list-image-none ml-7 mt-1">
 						<div class="mb-0.5">
-							<span class="-left-2 relative"> <strong class="font-semibold text-blk">1st:</strong> 25$ Amazon gift card </span>
+							<span> <strong class="font-semibold text-blk">1st:</strong> 25$ Amazon gift card </span>
 						</div>
 					</div>
 				</div>
