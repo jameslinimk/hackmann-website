@@ -29,14 +29,14 @@
 
 <div bind:this={formDiv} class="w-full md:text-lg lg:text-lg items-center justify-center flex flex-col gap-3"></div>
 
-<div bind:this={parentDiv} class="text-lbase text-blk lg:text-xl px-6 md:px-14 lg:px-40 2xl:px-96 mt-2 lg:mt-4 font-raleway">
+<div bind:this={parentDiv} class="text-lbase text-blk lg:text-xl px-6 md:px-14 lg:px-40 2xl:px-96 mt-4 lg:mt-8 font-raleway">
 	<p class="mb-4 lg:mb-8">
 		<strong>HackMann</strong> is a virtual hackathon hosted by the Horace Mann School Programming Club. Over the course of <strong>Friday, April 5 to Sunday, April 7</strong>, teams of up to two in
 		both the beginner and intermediate-advanced competitions will compete to build a working proof of concept technology that solves an issue based on a given theme. The theme will be announced
-		approaching the start date to ensure fairness. This way, all participants will have an equal opportunity to prepare and showcase their skills. Mentors will be available to assist students in
-		developing their applications, and workshops will be held throughout the weekend to help you learn new skills and get started on your project. At the end, each team will present their project, and
-		the judges will decide the winners. If you're with your friends, great! But if you're coming solo, we'll have time at the beginning of the event to form new teams. Please register below to add
-		your email to our list and
+		approaching the start date to ensure fairness. This way, all participants will have <strong>an equal opportunity</strong> to prepare and showcase their skills. Mentors will be available to assist
+		students in developing their applications, and workshops will be held throughout the weekend to help you learn new skills and get started on your project. At the end, each team will present their
+		project, and the judges will decide the winners. If you're with your friends, great! But if you're coming solo, we'll have time at the beginning of the event to form new teams. Please register
+		below to add your email to our list and
 		<strong
 			>join our
 			<a href="/discord" class="a font-semibold">Discord server</a></strong
