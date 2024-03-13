@@ -18,6 +18,7 @@ export default {
 				raleway: ['"Raleway"', "sans-serif"],
 			},
 			fontSize: {
+				lbase: ["1.08rem", "1.55rem"],
 				"4.5xl": ["2.7rem", "2.5rem"],
 				"2xs": ".6rem",
 			},
